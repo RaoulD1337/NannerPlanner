@@ -1,13 +1,13 @@
-const requiem402PresetData = {
+const threebftweaks433 = {
   id : 0,
-  name : "Requiem 4.0 and Up",
+  name : "3BFTweaks 4.3.3",
   perks : 0,
   races : 0,
   gameMechanics : 0,
   blessings: 0
 }
 
-addPresetData(requiem402PresetData);
+/*addPresetData(requiem402PresetData);
 
 const requiem402WithFozarsPresetData = {
   id : 1,
@@ -29,4 +29,6 @@ const fTweaks17PresetData = {
   blessings: 2
 }
 
-addPresetData(fTweaks17PresetData);
+*/
+
+addPresetData(threebftweaks433);
