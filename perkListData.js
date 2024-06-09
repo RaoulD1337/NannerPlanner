@@ -57,7 +57,7 @@ perks : [
    description : "Having altered your body with extracts from troll fat, slaughterfish eggs and spriggan sap, you're now able to regenerate your body, and do so even more rapidly when you are immersed in water."},
   //7
   {name : "Catalysis", skill : 0, skillReq : 50,
-   xPos : 63, yPos : 35, preReqs : [2], nextPerk: 7,
+   xPos : 63, yPos : 35, preReqs : [2], nextPerk: 8,
    description : "You've started experimenting with a catalyst that increases the yield of the brewing process roughly one fifth of the time and improves the effects of all your beneficial elixirs by 10%."},
   //8
   {name : "Catalysis", skill : 0, skillReq : 100,
