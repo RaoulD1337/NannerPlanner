@@ -690,11 +690,11 @@ perks : [
    //165
   {name : "Powerful<br>Strike", skill : 11, skillReq : 50,
    xPos : 42, yPos : 40, preReqs : [152], nextPerk: -1,
-   description : "By pursuing your apprenticeship in Restoration, you've gained knowledge of Apprentice level spells which you now augment while casting them with less effort."},
+   description : "You know how to put the maximum force into your power attacks which are now even more devastating.<br>[power attack damage x 1.1]"},
    //166
   {name : "Powerful<br>Charge", skill : 11, skillReq : 50,
    xPos : 58, yPos : 40, preReqs : [152], nextPerk: -1,
-   description : "By advancing further into the school of Restoration, you've gained some Adept level spells and learned how to augment and cast spells of this rank more easily."},
+   description : "You have learned to perform a leaping power attack while sprinting which penetrates armor.<br>[Able to do sprinting power attack, sprinting power attack ignores 15% of armor]"},
    //167
   {name : "Battle Master", skill : 11, skillReq : 100,
    xPos : 50, yPos :10, preReqs : [165,166], nextPerk: -1,
