@@ -1,10 +1,5 @@
-/*
-*
-* Base Requiem 4.0.2 (and probably earlier)
-*
-*/
-const three3bftweaks433data = {
-name : "3BFTweaks 4.33",
+const three3bftweaksdata = {
+name : "3BFTweaks",
 id: 0,
 skillNames : [
   "Alchemy",      // 0
@@ -322,7 +317,7 @@ perks : [
    description : "Your aptitude with lightning grants you a natural resistance to it, while also increasing all your shock spells' power even further."},
    //72
   {name : "Deep<br>Freeze", skill : 4, skillReq : 75,
-   xPos : 65, yPos : 35, preReqs : [68], nextPerk: -1,
+   xPos : 66, yPos : 35, preReqs : [68], nextPerk: -1,
    description : "Your higher level ice spells are colder than Skyrim's most ferocious blizzards,<br>causing them to freeze foes with low resistance to frost."},
    //73
   {name : "Frost<br>Mastery", skill : 4, skillReq : 100,
@@ -917,7 +912,7 @@ perks : [
    xPos : 63, yPos : 50, preReqs : [219], nextPerk: -1,
    description : "Newfound knowledge of humanoid anatomy allows you to slay almost any <br> human-like creature outright with sneak attacks."},
    //221
-  {name : "Advanced<br>Anatomical<br>Lore", skill : 15, skillReq : 75,
+  {name : "Advanced<br>Anatomical Lore", skill : 15, skillReq : 75,
    xPos : 55, yPos : 40, preReqs : [220], nextPerk: -1,
    description : "Your vast knowledge of anatomy allows you to perform devastating sneal attacks on almost any target."},
    //222
@@ -1068,4 +1063,4 @@ perks : [
 ]
 };
 
-addPerkData(three3bftweaks433data);
+addPerkData(three3bftweaksdata);
