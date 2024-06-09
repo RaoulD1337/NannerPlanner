@@ -778,7 +778,7 @@ function updateBuildCodeDisplay(){
   let buildCheck = validateBuild();
   if(buildCheck.valid){
     let code = generateBuildCode();
-    let buildLink = `https://banananaut.github.io/NannerPlanner/?p=${curPreset.id}&b=${code}`;
+    let buildLink = `https://raould1337.github.io/NannerPlanner/?p=${curPreset.id}&b=${code}`;
     $("#buildCodeText").val(buildLink);
   }
   else{
