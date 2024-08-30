@@ -424,16 +424,16 @@ function drawActiveSkillTree(){
     let curYPos = perks[i].yPos / 100 * svgHeight;
     
     //Assuming that all pre-reqs are in the same skill tree
-    for(let j = 0; j < perks[i].preReqs.length; j++)
+    for(let j = 0; j < perks[i].conTo.length; j++)
     {
-      let preReqNum = Math.abs(perks[i].preReqs[j]);
+      let lineNum = Math.abs(perks[i].conTo[j]);
       
-      let preXPos = perks[ preReqNum ].xPos / 100 * svgWidth;
-      let preYPos = perks[ preReqNum ].yPos / 100 * svgHeight;
+      let preXPos = perks[ lineNum ].xPos / 100 * svgWidth;
+      let preYPos = perks[ lineNum ].yPos / 100 * svgHeight;
       
       if(preXPos != curXPos || preYPos != curYPos)
       { 
-        theSVG.append(`<line id="mainLine${i}to${preReqNum}" x1="${curXPos}" y1="${curYPos}" x2="${preXPos}" y2="${preYPos}" stroke-width="2" stroke-opacity="0.5" />`);
+        theSVG.append(`<line id="mainLine${i}to${lineNum}" x1="${curXPos}" y1="${curYPos}" x2="${preXPos}" y2="${preYPos}" stroke-width="2" stroke-opacity="0.5" />`);
       }
     }
   }
@@ -519,19 +519,19 @@ function updateCircleAndLineColors(){
         }
         
         //Then the connecting lines
-        for(let j = 0; j < thePerk.preReqs.length; j++){
-          if(characterHasPerk(Math.abs(thePerk.preReqs[j]))){
-            $(`#mainLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","yellow");
+        for(let j = 0; j < thePerk.conTo.length; j++){
+          if(characterHasPerk(Math.abs(thePerk.conTo[j]))){
+            $(`#mainLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","yellow");
           }
           else{
-            $(`#mainLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","lightblue");
+            $(`#mainLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","lightblue");
           }
         }
       }
       else{
         $(`#activeCircle${i}`).attr("fill","url(#perkNotSelectedGrad)");
-        for(let j = 0; j < thePerk.preReqs.length; j++){
-          $(`#mainLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","lightblue");
+        for(let j = 0; j < thePerk.conTo.length; j++){
+          $(`#mainLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","lightblue");
         }
       } 
     }
@@ -545,17 +545,17 @@ function updateCircleAndLineColors(){
     let hasPerk = characterHasPerk(i);
     if(!hasPerk){
       $(`#miniSkillCircle${i}`).attr("fill","lightblue");
-      for(let j = 0; j < thePerk.preReqs.length; j++){
-        $(`#miniLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","lightblue");
+      for(let j = 0; j < thePerk.conTo.length; j++){
+        $(`#miniLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","lightblue");
       }
     }
     else{
-      for(let j = 0; j < thePerk.preReqs.length; j++){
-        if(characterHasPerk(Math.abs(thePerk.preReqs[j]))){
-          $(`#miniLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","yellow");
+      for(let j = 0; j < thePerk.conTo.length; j++){
+        if(characterHasPerk(Math.abs(thePerk.conTo[j]))){
+          $(`#miniLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","yellow");
         }
         else{
-          $(`#miniLine${i}to${Math.abs(thePerk.preReqs[j])}`).attr("stroke","lightblue");
+          $(`#miniLine${i}to${Math.abs(thePerk.conTo[j])}`).attr("stroke","lightblue");
         }
       }
       //Check if the circle should be red because we have a later perk in the
@@ -601,15 +601,15 @@ function drawMiniSkillTrees() {
     let curXPos = perks[i].xPos / 100 * svgWidth;
     let curYPos = perks[i].yPos / 100 * svgHeight;
     
-    for(let j = 0; j < perks[i].preReqs.length; j++)
+    for(let j = 0; j < perks[i].conTo.length; j++)
     {
-      let preReqNum = Math.abs(perks[i].preReqs[j]);
-      let preXPos = perks[ preReqNum ].xPos / 100 * svgWidth;
-      let preYPos = perks[ preReqNum ].yPos / 100 * svgHeight;
+      let lineNum = Math.abs(perks[i].conTo[j]);
+      let preXPos = perks[ lineNum ].xPos / 100 * svgWidth;
+      let preYPos = perks[ lineNum ].yPos / 100 * svgHeight;
       
       if(preXPos != curXPos || preYPos != curYPos)
       { 
-        theSVG.append(`<line id="miniLine${i}to${preReqNum}" x1="${curXPos}" y1="${curYPos}" x2="${preXPos}" y2="${preYPos}" stroke-width="1" />`);
+        theSVG.append(`<line id="miniLine${i}to${lineNum}" x1="${curXPos}" y1="${curYPos}" x2="${preXPos}" y2="${preYPos}" stroke-width="1" />`);
       }
     }
   }
