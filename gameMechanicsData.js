@@ -6,7 +6,7 @@ const threebftweaksGameMechanicsData = {
   
   oghmaData : {
     perksGiven : 3,
-    hmsGiven : [50,75,100]
+    hmsGiven : [50,100,100]
   },
   
   leveling: {
