@@ -19,7 +19,7 @@ var characterData = {
   earnedPerks : 0,
   earnedAttributes: 0,
   spentPerks: 0, //The number of perks actually taken
-  standingStone : 0,
+  birthsign : 0,
   blessing : 0
 };
 
@@ -52,7 +52,7 @@ function initCharacterData(){
     characterData.attrIncreases = 0;
     characterData.earnedPerks = pGameMechanicsData.initialPerks;
     characterData.spentPerks = 0;
-    characterData.standingStone = 0;
+    characterData.birthsign = 0;
     characterData.blessing = 0;
     characterData.earnedAttributes = 0;
   }
@@ -490,7 +490,7 @@ function generateBuildCode(){
   code += String.fromCodePoint(characterData.oghmaChoice << 4);
   code += String.fromCodePoint(characterData.blackBookPerks);
   code += String.fromCodePoint(characterData.race);
-  code += String.fromCodePoint(characterData.standingStone);
+  code += String.fromCodePoint(characterData.birthsign);
   code += String.fromCodePoint(characterData.blessing);
   
   let paddingNeeded = 8 - (characterData.perksTaken.length % 8);
@@ -562,7 +562,7 @@ function buildCodeParserV1(buildCode){
   characterData.oghmaChoice = buildCode.charCodeAt(23);
   characterData.blackBookPerks = buildCode.charCodeAt(24);
   characterData.race = buildCode.charCodeAt(25);
-  characterData.standingStone = buildCode.charCodeAt(26);
+  characterData.birthsign = buildCode.charCodeAt(26);
   characterData.blessing = buildCode.charCodeAt(27);
   
   characterData.perksTaken = [];
