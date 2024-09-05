@@ -22,12 +22,12 @@ const perkData = {
 	perks : [
 	  /*
 		{name : "", skill : 0, skillReq : 0,
-		  xPos : 0, yPos : 0, conTo : [], preReqs : [], nextPerk: -1,
+		  xPos : 0, yPos : 0, preReqs : [], nextPerk: -1,
 		  description : ""},
 	  */
 	  //0
 	  {name : "Alchemical Lore", skill : 0, skillReq: 0,
-	   xPos : 50.3, yPos : 90, conTo : [], preReqs : [], nextPerk: 1,
+	   xPos : 50.3, yPos : 90, preReqs : [], nextPerk: 1,
 	   description : "You've acquired basic alchemical insights and understand how to work with a laboratory. Thus, you can now craft your own potions and poisons."},
 	  //1
 	  {name : "Alchemical Lore", skill : 0, skillReq : 0,
@@ -59,7 +59,7 @@ const perkData = {
 	   description : "You've started experimenting with a catalyst that increases the yield of the brewing process roughly one fifth of the time and improves the effects of all your beneficial elixirs by 10%."},
 	  //8
 	  {name : "Catalysis", skill : 0, skillReq : 100,
-	   xPos : 63, yPos : 35, conTo : [2,7], preReqs : [2,7], nextPerk: -1,
+	   xPos : 63, yPos : 35, preReqs : [2,7], nextPerk: -1,
 	   description : "You've improved the catalyst. Thereby, you can craft double the amount of <br> mixtures with the same amount of ingredients half of the time, are able to improve the effects of all your beneficial elixirs by 10% and your health/stamina/magicka-restoring potions by a further 10%."},
 	  //9
 	  {name : "Improved Poisons", skill : 0, skillReq : 50,
@@ -67,7 +67,7 @@ const perkData = {
 	   description : "By adding small amounts of truly horrifying ingredients, you are able to make your poisons more potent."},
 	  //10
 	  {name : "Immunization", skill : 0, skillReq : 75,
-	   xPos : 50, yPos : 25, conTo : [7,9], preReqs : [-7,-9], nextPerk: -1,
+	   xPos : 50, yPos : 25, preReqs : [-7,-9], nextPerk: -1,
 	   description : "You've discovered a way to make your body more resilient to all kinds of diseases and poisons."},
 	  //11
 	  {name : "Fortified<br>Muscles", skill : 0, skillReq : 80,
@@ -83,7 +83,7 @@ const perkData = {
 	   description : "You've found a method to eliminate disadvantages from your mixtures while making them even more potent. All created potions are 10% more potent, while all beneficial potions are a further 5% more potent. Lastly, health/magicka/stamina-restoring potions are a further 5% more potent."},
 	  //14
 	  {name : "Novice Alteration", skill : 1, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've taught yourself a few Novice level spells and learned how to cast them with decreased effort while your newfound knowledge also allows you to augment all Alteration spells."},
 	  //15
 	  {name : "Apprentice<br>Alteration", skill : 1, skillReq : 25,
@@ -135,7 +135,7 @@ const perkData = {
 	   description : "Having delved even deeper in metamagical lore, you can cast any spell more effectively and augment all other magical effects."},
 	   //27
 	  {name : "Improved Blocking", skill : 2, skillReq : 0,
-	   xPos : 55, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 55, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You strengthened your shield arm and trained to parry blows a little. Thus you can block somewhat better and protect yourself a bit more from offensive magic with your shield."},
 	   //28
 	  {name : "Strong Grip", skill : 2, skillReq : 15,
@@ -167,11 +167,11 @@ const perkData = {
 	   description : "Sometimes, when you put all your strength into your bashes your foes drop their weapon because of the pain. Your shield with a resistance enchantment now charges faster and released energy is even stronger and hits targets around you."},
 	   //35
 	  {name : "Unstoppable Charge", skill : 2, skillReq : 100,
-	   xPos : 55, yPos : 15, conTo : [34,31], preReqs : [31,34], nextPerk: -1,
+	   xPos : 55, yPos : 15, preReqs : [31,34], nextPerk: -1,
 	   description : "When bull rushing with a shield raised, you are a tremendous force to deal with. In addition to likely being knocked down, your unfortunate enemies will also suffer serious wounds from the impact itself."},
 	   //36
 	  {name : "Novice<br>Conjuration", skill : 3, skillReq : 0,
-	   xPos : 55, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 55, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've taught yourself a few Novice level spells and learned how to cast them with decreased effort <br> while your newfound knowledge also allows you to augment all Conjuration spells."},
 	   //37
 	  {name : "Apprentice<br>Conjuration", skill : 3, skillReq : 25,
@@ -227,7 +227,7 @@ const perkData = {
 	   description : "You have practiced the mental ability of maintaining two summons at the same time. This power extends to controlling any type of conjured or conceived entity, even outside the school of Conjuration."},
 	   //50 
 	  {name : "Cognitive<br>Flexibility", skill : 3, skillReq : 100,
-	   xPos : 44, yPos : 33, conTo : [48,49], preReqs : [48,49], nextPerk: -1,
+	   xPos : 44, yPos : 33, preReqs : [48,49], nextPerk: -1,
 	   description : "You have mastered the art of Cognitive Flexibility, a trait of only the most accomplished Summoners throughout history. You can now control three summons, of any type, simultaneously."},
 	   //51
 	  {name : "Binding<br>Contract", skill : 3, skillReq : 0,
@@ -251,7 +251,7 @@ const perkData = {
 	   description : "Your knowledge of Oblivion's elemental aspects increases the strength of all your summoned Atronachs while the highest level rituals will conjure Thralls that are immune to Banishment and Control spells."},
 	  //56
 	  {name : "Novice Destruction", skill : 4, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've taught yourself a few Novice level spells and learned how to cast them with decreased effort <br> while your newfound knowledge also allows you to augment all Destruction spells."},
 	  //57
 	  {name : "Empowered<br>Elements", skill : 4, skillReq : 20,
@@ -267,7 +267,7 @@ const perkData = {
 	   description : "You have studied the stranger aspects of the Destruction school. <br> Therefore, you no longer suffer a penalty when casting non-elemental spells."},
 	   //60
 	  {name : "Esoteric Magic", skill : 4, skillReq : 80,
-	   xPos : 33, yPos : 55, conTo : [56,59], preReqs : [56,59], nextPerk: -1,
+	   xPos : 33, yPos : 55, preReqs : [56,59], nextPerk: -1,
 	   description : "You have studied the stranger aspects of the Destruction school. <br> Therefore, you no longer suffer a penalty when casting non-elemental spells."},
 	   //61
 	  {name : "Clandestine<br>Magic", skill : 4, skillReq : 60,
@@ -303,7 +303,7 @@ const perkData = {
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //69
 	  {name : "Elemental Expertise", skill : 4, skillReq : 60,
-	   xPos : 70, yPos : 55, conTo : [56,68], preReqs : [56,58], nextPerk: -1,
+	   xPos : 70, yPos : 55, preReqs : [56,58], nextPerk: -1,
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //70
 	  {name : "Electrostatic<br>Discharge", skill : 4, skillReq : 75,
@@ -339,7 +339,7 @@ const perkData = {
 	   description : "Your grasp of wind grants you a natural ability to move with ease, <br> while increasing all your wind spells' power even further."},
 	   //78
 	  {name : "Enchanter's Insight", skill : 5, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: 79,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: 79,
 	   description : "You've acquired fundamental insights into how matter and magic intertwine. Thus, you can now infuse<br> items with arcane energy at an enchanter and use soul gems to recharge enchanted items of all kinds. You can craft novice-tier scrolls."},
 	   //79
 	  {name : "Enchanter's Insight", skill : 5, skillReq : 20,
@@ -371,7 +371,7 @@ const perkData = {
 	   description : "You've become a master of infusing enchantments that transfer knowledge and skill to the user, making all such ones stronger."},
 	   //86
 	  {name : "Enchantment Mastery", skill : 5, skillReq : 100,
-	   xPos : 57, yPos : 10, conTo : [82,85], preReqs : [82,85], nextPerk: -1,
+	   xPos : 57, yPos : 10, preReqs : [82,85], nextPerk: -1,
 	   description : "You've found a way to bind even more energy into inanimate matter. Thus, you can bend the Law of Firsts to an extent and even create Daedric staves, while your enchantments are even stronger still."},
 	   //87
 	  {name : "Weapon<br>Infusion", skill : 5, skillReq : 10,
@@ -391,7 +391,7 @@ const perkData = {
 	   description : "Your weapon infusions are able to pierce magic resistances and do even more damage."},
 	   //91
 	  {name : "Agility", skill : 6, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "After some training you are now much more confident in your evasive movements. Your light armor and clothes will now hinder your movements less and you take less damage from falling. You burn slightly less stamina from actions when not wearing a heavy cuirass. Unique material bonuses are applied when wearing light armor."},
 	   //92
 	  {name : "Dodge", skill : 6, skillReq : 20,
@@ -423,15 +423,15 @@ const perkData = {
 	   description : "You deal more damage with melee weapons while you are running and/or behind an enemy, for you have learned to flank your enemies with ease when not wearing a heavy cuirass. You can also shoot ranged weapons faster when running.<br>Dodging allows you to pinpoint vital spots and penetrate armor weakpoints with your attacks. Furthermore, your reflexes will never betray you when an enemy attempts a lethal strike."},
 	   //99
 	  {name : "Combat Reflexes", skill : 6, skillReq : 75,
-	   xPos : 58, yPos : 19, conTo : [95,98], preReqs : [95,98], nextPerk: -1,
+	   xPos : 58, yPos : 19, preReqs : [95,98], nextPerk: -1,
 	   description : "You've gained the ability to act faster in combat, though doing so will quickly exhaust you. Dodging costs less stamina."},
 	   //100
 	  {name : "Meteoric Reflexes", skill : 6, skillReq : 100,
-	   xPos : 47, yPos : 10, conTo : [97,99], preReqs : [97,99], nextPerk: -1,
+	   xPos : 47, yPos : 10, preReqs : [97,99], nextPerk: -1,
 	   description : "You require no extra stamina for power attacks when wearing heavy armor and are less hindered by your armor. Also, your gauntlets improve your unarmed damage."},
 	   //101
 	  {name : "Conditioning", skill : 7, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've accustomed yourself to using heavy armor.<br>[No stamina drain for wearing heavy armor, unique bonus when wearing high-quality materials, -35% armor weight penalty]"},
 	   //102
 	  {name : "Combat<br>Training", skill : 7, skillReq : 20,
@@ -483,7 +483,7 @@ const perkData = {
 	   description : "For each piece of heavy armor worn, you can further withstand magical attacks by 2.5%, and by an extra 5% if a full suit is donned."},
 	   //114
 	  {name : "Novice<br>Illusion", skill : 8, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've taught yourself a few Novice level spells and learned how to cast them with decreased effort <br> while your newfound knowledge also allows you to augment the strength and duration of all Illusion spells."},
 	   //115
 	  {name : "Apprentice<br>Illusion", skill : 8, skillReq : 20,
@@ -515,15 +515,15 @@ const perkData = {
 	   description : "By advancing further into the school of Illusion, you've gained some Adept level spells<br>and learned how to augment and cast spells of this rank more easily."},
 	   //122
 	  {name : "Pain and<br>Agony", skill : 8, skillReq : 50,
-	   xPos : 65, yPos : 30, preReqs : [21], nextPerk: -1,
+	   xPos : 65, yPos : 30, preReqs : [121], nextPerk: -1,
 	   description : "Having studied spells like Phantasmal Pain and Waking Nightmare, you can now invoke terrible agony in your foes with ease. In addition, you also learned how to empower related spells."},
 	   //123
 	  {name : "Environmental<br>Manipulation", skill : 8, skillReq : 65,
-	   xPos : 25, yPos : 29, conTo : [118,119], preReqs : [118,119], nextPerk: -1,
+	   xPos : 25, yPos : 29, preReqs : [118,119], nextPerk: -1,
 	   description : "After long training with spells like Vanish, Veil of Silence, and Invisibility and Muffling Spheres, you gained a deep insight<br>into the connections between light and sound. You can now empower these spells and maintain them with less effort."},
 	   //124
 	  {name : "Obliterate<br>the Mind", skill : 8, skillReq : 70,
-	   xPos : 77, yPos : 15, conTo : [120,122], preReqs : [120,122], nextPerk: -1,
+	   xPos : 77, yPos : 15, preReqs : [120,122], nextPerk: -1,
 	   description : "You have studied spells like Phantasmal Killer and Blackout. Thus, you can now empower them and shatter your foes' minds with ease."},
 	   //125
 	  {name : "Expert<br>Illusion", skill : 8, skillReq : 60,
@@ -535,15 +535,15 @@ const perkData = {
 	   description : "Your knowledge of Illusion has become all-encompassing. You taught yourself a Master level spell <br> and you can cast the most complex spells from this school with less effort while augmenting them beyond mortal limits."},
 	   //127
 	  {name : "Domination", skill : 8, skillReq : 90,
-	   xPos : 75, yPos : 3, conTo : [124,126], preReqs : [124,125], nextPerk: -1,
+	   xPos : 75, yPos : 3, preReqs : [124,126], nextPerk: -1,
 	   description : "Having studied spells like Phantasmal Miasma, Fog of Shadows, and Mind Maelstrom, there is no thinking being that can escape your influence. These spells can now be empowered and sustained more easily."},
 	   //128
 	  {name : "Phantasmogoria", skill : 8, skillReq : 90,
-	   xPos : 35, yPos : 5, conTo : [123,126], preReqs : [123,126], nextPerk: -1,
+	   xPos : 35, yPos : 5, preReqs : [123,126], nextPerk: -1,
 	   description : "You've mastered the most powerful forms of deceptive magic. Therefore, spells like Veil of Shadows<br>and Mistress of the Dark can now be empowered and cast with highly decreased effort."},
 	   //129
 	  {name : "Cheap Tricks", skill : 9, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You have learned the basics of the art of picking locks and carrying found goods.<br>[+3 lockpicking expertise, +20 carry weight, forge lockpicks with Craftsmanship]"},
 	   //130
 	  {name : "Advanced<br>Lockpicking", skill : 9, skillReq : 30,
@@ -555,7 +555,7 @@ const perkData = {
 	   description : "You are able to locate secret spaces in containers when you search them <br> and can thereby find more loot. You're also able to more effectively carry your loot. [+30 Carry Weight]"},
 	   //132
 	  {name : "Sophisticated<br>lockpicking", skill : 9, skillReq : 60,
-	   xPos : 58, yPos : 45, preReqs : [131], nextPerk: -1,
+	   xPos : 58, yPos : 45, preReqs : [130], nextPerk: -1,
 	   description : "You have memorized the inner mechanics of sophisticated locks and security systems and are able to haul more loot out.<br>[+2 Lockpicking Expertise, +10 Carry Weight]"},
 	   //133
 	  {name : "Masterly<br>Lockpicking", skill : 9, skillReq : 90,
@@ -563,7 +563,7 @@ const perkData = {
 	   description : "You learned everything there is to know about the art of lockpicking and hauling loot.<br>[+2 Lockpicking Expertise, +20 Carry Weight]"},
 	   //134
 	  {name : "Ranged Combat Training", skill : 10, skillReq : 0,
-	   xPos : 80, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 80, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "After some training at the shooting range you can deal more damage with bows and crossbows.<br>[bow and crossbow damage x 1.1, ammunition grants armor penetration, 30% less stamina drain for bows]"},
 	   //135
 	  {name : "Ranger", skill : 10, skillReq : 15,
@@ -611,11 +611,11 @@ const perkData = {
 	   description : "You've mastered the technique of hitting weak armor parts. [+50% armor penetration from ammunition]"},
 	   //146
 	  {name : "Stunning Precision", skill : 10, skillReq : 100,
-	   xPos : 38, yPos : 2, conTo : [143,145], preReqs : [143,145], nextPerk: -1,
+	   xPos : 38, yPos : 2, preReqs : [143,145], nextPerk: -1,
 	   description : "Any successful staggering shot will almost always stun the target momentarily, and/or slow it down for a short period of time. 1-in-5 chance to disarm targets who are power attacking at the moment the shot lands."},
 	   //147
 	  {name : "Weapon Mastery", skill : 11, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: 148,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: 148,
 	   description : "Your improved fighting techniques allow you to swing one-handed weapons with less effort and deal more damage.<br>[10% more damage]"},
 	   //148
 	  {name : "Weapon Mastery", skill : 11, skillReq : 35,
@@ -627,11 +627,11 @@ const perkData = {
 	   description : "When fighting with one-handed weapons, you are able to attack faster than normal.<br>[+7.5% attack speed]"},
 	   //150
 	  {name : "Flurry", skill : 11, skillReq : 50,
-	   xPos : 85, yPos : 78, conTo : [147,149], preReqs : [147,149], nextPerk: -1,
+	   xPos : 85, yPos : 78, preReqs : [147,149], nextPerk: -1,
 	   description : "When fighting with one-handed weapons, you're able to attack even faster.<br>[+17.5% attack speed]"},
 	   //151
 	  {name : "Storm of Steel", skill : 11, skillReq : 75,
-	   xPos : 77, yPos : 30, conTo : [149,150], preReqs : [149,150], nextPerk: -1,
+	   xPos : 77, yPos : 30, preReqs : [149,150], nextPerk: -1,
 	   description : "The fury of battle energizes your blows. Each strike you deal with one-handed weapons increases your damage for a short period of time."},
 	   //152
 	  {name : "Penetrating Strikes", skill : 11, skillReq : 15,
@@ -643,11 +643,11 @@ const perkData = {
 	   description : "You learned some dirty tricks for your dagger. [+25% irresistible sneal attack damage, +10% armor penetration]"},
 	   //154
 	  {name : "Dagger<br>Focus", skill : 11, skillReq : 50,
-	   xPos : 25, yPos : 50, conTo : [152,153], preReqs : [152,153], nextPerk: 155,
+	   xPos : 25, yPos : 50, preReqs : [152,153], nextPerk: 155,
 	   description : "A dagger in your hand turns into a deadly weapon. [55% irresistible sneal attack damage, +20% armor penetration]"},
 	   //155
 	  {name : "Dagger<br>Focus", skill : 11, skillReq : 75,
-	   xPos : 25, yPos : 50, conTo : [152,153,154], preReqs : [152,153,154], nextPerk: -1,
+	   xPos : 25, yPos : 50, preReqs : [152,153,154], nextPerk: -1,
 	   description : "A dagger in your hand turns into a deadly weapon. [100% irresistible sneal attack damage, +30% armor penetration]"},
 	   //156
 	  {name : "War Axe<br>Focus", skill : 11, skillReq : 0,
@@ -655,11 +655,11 @@ const perkData = {
 	   description : "You've become familiar with war axes.<br>[10% more damage, +10% armor penetration]"},
 	   //157
 	  {name : "War Axe>br>Focus", skill : 11, skillReq : 0,
-	   xPos : 35, yPos : 50, conTo : [152,156], preReqs : [152,156], nextPerk: 158,
+	   xPos : 35, yPos : 50, preReqs : [152,156], nextPerk: 158,
 	   description : "You've become an advanced war axe fighter.<br>[20% more damage, +20% armor penetration]"},
 	   //158
 	  {name : "War Axe<br>Focus", skill : 11, skillReq : 0,
-	   xPos : 35, yPos : 50, conTo : [152,156,157], preReqs : [152,156,157], nextPerk: -1,
+	   xPos : 35, yPos : 50, preReqs : [152,156,157], nextPerk: -1,
 	   description : "You've become a master of war axe combat..<br>[30% more damage, +30% armor penetration]"},
 	   //159
 	  {name : "Mace<br>Focus", skill : 11, skillReq : 25,
@@ -667,11 +667,11 @@ const perkData = {
 	   description : "You've learned some techniques to crush armor with maces.<br>[5% more power attack damage, +15% armor penetration]"},
 	   //160
 	  {name : "Mace<br>Focus", skill : 11, skillReq : 50,
-	   xPos : 65, yPos : 50, conTo : [152,159], preReqs : [152,159], nextPerk: 161,
+	   xPos : 65, yPos : 50, preReqs : [152,159], nextPerk: 161,
 	   description : "You've become an advanced mace fighter and know how to find weak spots in enemy armor.<br>[10% more power attack damage, +30% armor penetration]"},
 	   //161
 	  {name : "Mace<br>Focus", skill : 11, skillReq : 75,
-	   xPos : 65, yPos : 50, conTo : [152,159,160], preReqs : [152,159,160], nextPerk: -1,
+	   xPos : 65, yPos : 50, preReqs : [152,159,160], nextPerk: -1,
 	   description : "You've become a masterly mace fighter, rendering armor almost useless.<br>[15% more power attack damage, +45% armor penetration]"},
 	   //162
 	  {name : "Sword<br>Focus", skill : 11, skillReq : 25,
@@ -679,11 +679,11 @@ const perkData = {
 	   description : "You've learned the basics of sword combat.<br>[+8% attack speed, +7% armor penetration]"},
 	   //163
 	  {name : "Sword<br>Focus", skill : 11, skillReq : 50,
-	   xPos : 75, yPos : 50, conTo : [152,162], preReqs : [152,162], nextPerk: 164,
+	   xPos : 75, yPos : 50, preReqs : [152,162], nextPerk: 164,
 	   description : "You've acquired the advanced techniques of sword combat.<br>[+16% attack speed, +14% armor penetration]"},
 	   //164
 	  {name : "Sword<br>Focus", skill : 11, skillReq : 75,
-	   xPos : 75, yPos : 50, conTo : [152,162,163], preReqs : [152,162,163], nextPerk: -1,
+	   xPos : 75, yPos : 50, preReqs : [152,162,163], nextPerk: -1,
 	   description : "You've become a master of sword combat.<br>[+24% attack speed, +21% armor penetration]"},
 	   //165
 	  {name : "Powerful<br>Strike", skill : 11, skillReq : 50,
@@ -695,11 +695,11 @@ const perkData = {
 	   description : "You have learned to perform a leaping power attack while sprinting which penetrates armor.<br>[Able to do sprinting power attack, sprinting power attack ignores 15% of armor]"},
 	   //167
 	  {name : "Battle Master", skill : 11, skillReq : 100,
-	   xPos : 50, yPos :10, conTo : [165,166], preReqs : [165,166], nextPerk: -1,
+	   xPos : 50, yPos :10, preReqs : [165,166], nextPerk: -1,
 	   description : "You've gained a mastery over special weapon techniques that allow you to knock down and disarm enemies.<br>[Forward power attacks can knock down, sideways power attacks disarm enemies who are attacking you]"},
 	   //168
 	  {name : "Nimble Fingers", skill : 12, skillReq : 0,
-	   xPos : 30, yPos : 90, conTo : [], preReqs : [], nextPerk: 169,
+	   xPos : 30, yPos : 90, preReqs : [], nextPerk: 169,
 	   description : "You've spent some time improving your sleight of hand,<br>which gives you substantial chances when pickpocketing, along with an easier time distributing your weight when attacking and traveling."},
 	   //169
 	  {name : "Nimble Fingers", skill : 12, skillReq : 40,
@@ -715,7 +715,7 @@ const perkData = {
 	   description : "You're able to target and accurately strike a target's weak points. Brandishing two weapons simultaneously contributes to greater power in your attacks. <br>[increases armor penetration by 5 with one-handed weapons without a shield, or 10 while dual wielding]"},
 	   //172
 	  {name : "Precise<br>Strikes", skill : 12, skillReq : 80,
-	   xPos : 32, yPos : 37, conTo : [170,171], preReqs : [170,171], nextPerk: -1,
+	   xPos : 32, yPos : 37, preReqs : [170,171], nextPerk: -1,
 	   description : "You're able to target and accurately strike a target's weak points even more effectively. Brandishing two weapons simultaneously contributes to greater power in your attacks. <br>[increases armor penetration by 10 with one-handed weapons without a shield, or 15 while dual wielding]"},
 	   //173
 	  {name : "Akimbo<br>Power Attacks", skill : 12, skillReq : 70,
@@ -751,11 +751,11 @@ const perkData = {
 	   description : "You've learned the basics of combat boxing, allowing you to increase your attack rate and movement speed while using fist weapons slightly."},
 	   //181
 	  {name : "Boxing<br>Focus", skill : 12, skillReq : 50,
-	   xPos : 52, yPos : 50, conTo : [179,180], preReqs : [179,180], nextPerk: 182,
+	   xPos : 52, yPos : 50, preReqs : [179,180], nextPerk: 182,
 	   description : "You've acquired the advanced techniques of combat boxing, further increasing your attack rate  and movement speed while using fist weapons. This path you choose locks you out of other focuses."},
 	   //182
 	  {name : "Boxing<br>Focus", skill : 12, skillReq : 75,
-	   xPos : 52, yPos : 50, conTo : [179,180,181], preReqs : [179,180,181], nextPerk: -1,
+	   xPos : 52, yPos : 50, preReqs : [179,180,181], nextPerk: -1,
 	   description : "You've become a master of combat boxing, allowing you to swing your fists and move so while using fist weapons fast that it's almost undetectable to the mortal eye. You're able to do a sprinting unarmed attack. This path you choose locks you out of other focuses."},	
 	   //183
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 25,
@@ -763,11 +763,11 @@ const perkData = {
 	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
 	   //184
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 50,
-	   xPos : 60, yPos : 43, conTo : [179,183], preReqs : [179,183], nextPerk: 185,
+	   xPos : 60, yPos : 43, preReqs : [179,183], nextPerk: 185,
 	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
 	   //185
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 75,
-	   xPos : 60, yPos : 43, conTo : [179,183,184], preReqs : [179,183,184], nextPerk: -1,
+	   xPos : 60, yPos : 43, preReqs : [179,183,184], nextPerk: -1,
 	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
 	   //186
 	  {name : "Fast Hands", skill : 12, skillReq : 40,
@@ -775,11 +775,11 @@ const perkData = {
 	   description : "You're able to attack more quickly with light weapons like daggers and bows."},
 	   //187
 	  {name : "Fast Hands", skill : 12, skillReq : 80,
-	   xPos : 75, yPos : 70, conTo : [168,186], preReqs : [168,186], nextPerk: -1,
+	   xPos : 75, yPos : 70, preReqs : [168,186], nextPerk: -1,
 	   description : "You're able to attack even more quickly with light weapons like daggers and bows. In addition, you're able to deflect incoming projectiles from ranged weapons, significantly reducing their damage, if you have enough distance and are not attacking,"},
 	   //188
 	  {name : "Novice Restoration", skill : 13, skillReq : 0,
-	   xPos : 35, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 35, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've taught yourself a few Novice level spells and learned how to cast them with decreased effort <br> while your newfound knowledge also allows you to augment all Restoration spells."},
 	   //189
 	  {name : "Benefactor's<br>Insight", skill : 13, skillReq : 20,
@@ -831,7 +831,7 @@ const perkData = {
 	   description : "Having learned all common ward spells, your mastery of wards is now complete. All ward spells absorb magicka from incoming spells and are easier to cast. Additionally, you have developed a new and especially powerful ward spell."},
 	   //201
 	  {name : "Craftsmanship", skill : 14, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've acquired the basics of craftsmanship and know how to properly use all kinds of tools. Thus, you are able to craft and improve a wide variety of common goods,<br>including novice-tier master keys and bombs. Unlocks weapon traits: cushioned and silver-lined. Unlocks Augmentation."},
 	   //202
 	  {name : "Advanced<br>Blacksmithing", skill : 14, skillReq : 50,
@@ -871,11 +871,11 @@ const perkData = {
 	   description : "You have become skilled at quicksilver-steel alloying. <br> Therefore, you can now forge Nordic armor and weapons. Unlocks weapon trait: hollowed."},
 	   //211
 	  {name : "Glass<br>Smithing", skill : 14, skillReq : 75,
-	   xPos : 29, yPos : 40, conTo : [205,206,207], preReqs : [-205,-206,-207], nextPerk: -1,
+	   xPos : 29, yPos : 40, preReqs : [-205,-206,-207], nextPerk: -1,
 	   description : "Crafting and improving Glass equipment is not for the unskilled, <br>but having studied intensely, you have overcome that challenge."},
 	   //212
 	  {name : "Ebony<br>Smithing", skill : 14, skillReq : 75,
-	   xPos : 71, yPos : 40, conTo : [201,210], preReqs : [201], nextPerk: -1,
+	   xPos : 71, yPos : 40, preReqs : [-201,-210], nextPerk: -1,
 	   description : "Ebony weapons and armour - some even fail at heating the metal. But not you. <br>Now that you've studied the related schematics, you can craft and improve ebony equipment with ease, as well as craft expert-tier master keys."},
 	   //213
 	  {name : "Daedric Smithing", skill : 14, skillReq : 100,
@@ -883,15 +883,15 @@ const perkData = {
 	   description : "The creation of daedric weapons and armor is a secret few mortals know - still, <br> somehow you managed to acquire the knowledge and skill to manage the feat."},
 	   //214
 	  {name : "Stalhrim<br>Smithing", skill : 14, skillReq : 85,
-	   xPos : 50, yPos : 43, conTo : [211,212], preReqs : [-211,-212], nextPerk: -1,
+	   xPos : 50, yPos : 43, preReqs : [-211,-212], nextPerk: -1,
 	   description : "Around the world, only a few know the secret of properly processing enchanted ice, <br>but you have uncovered this powerful lore and can now forge Stalhrim gear [Requires A New Source of Stalhrim completion]."},
 	   //215
 	  {name : "Draconic<br>Smithing", skill : 14, skillReq : 100,
-	   xPos : 50, yPos : 35, conTo : [211,212], preReqs : [-211,-212], nextPerk: -1,
+	   xPos : 50, yPos : 35, preReqs : [-211,-212], nextPerk: -1,
 	   description : "The scales and bones of dragons are probably the hardest material to work with, <br> but you've mastered even this art since you studied that old compendium."},
 	   //216
 	  {name : "Stealth", skill : 15, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: 217,
+	   xPos : 50, yPos : 90,  preReqs : [], nextPerk: 217,
 	   description : "You know the basics of moving silently and are harder to detect when sneaking <br> while not wearing any heavy armor."},
 	   //217
 	  {name : "Stealth", skill : 15, skillReq : 0,
@@ -927,7 +927,7 @@ const perkData = {
 	   description : "There's almost nothing you cannot evade.<br>You are even harder to detect, more silent and all falling damage is decreased. Grants the One with the Shadows Rank II ability."},
 	   //225
 	  {name : "Haggling", skill : 16, skillReq : 0,
-	   xPos : 25, yPos : 90, conTo : [], preReqs : [], nextPerk: 226,
+	   xPos : 25, yPos : 90, preReqs : [], nextPerk: 226,
 	   description : "You've learned how to deal with Skyrim's greedy merchants <br> and how to haggle for better prices."},
 	   //226
 	  {name : "Haggling", skill : 16, skillReq : 40,
@@ -955,11 +955,11 @@ const perkData = {
 	   description : "You've become proficient at acting, and with the right equipment you can now disguise yourself,<br>although sometimes people can still tell that you are not truly one of them."},
 	   //232
 	  {name : "Masquerade", skill : 16, skillReq : 100,
-	   xPos : 20, yPos : 20, conTo : [228,231], preReqs : [228,231], nextPerk: -1,
+	   xPos : 20, yPos : 20, preReqs : [228,231], nextPerk: -1,
 	   description : "There is no role you cannot play, and your acting is so believable that there is almost no way <br> for others to see through your disguises."},
 	   //233
 	  {name : "Lore of the Thu'um", skill : 16, skillReq : 0,
-	   xPos : 75, yPos : 90, conTo : [], preReqs : [], nextPerk: -1,
+	   xPos : 75, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've been studying the lore and ancient script of dragons and the Thu'um.<br>Thus, you can shout more often."},
 	   //234
 	  {name : "Destructive Urge", skill : 16, skillReq : 0,
@@ -979,7 +979,7 @@ const perkData = {
 	   description : "You've meditated thoroughly, and acquired vast insights into the Way of the Voice. <br> Thus, you can call upon the power of your Thu'um rapidly once each day."},
 	   //238
 	   {name : "Great Weapon Mastery", skill : 17, skillReq : 0,
-	   xPos : 50, yPos : 90, conTo : [], preReqs : [], nextPerk: 239,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: 239,
 	   description : "Your improved fighting techniques increase your damage dealt with two-handed weapons.<br>[damage x 1.1]"},
 	   //239
 	   {name : "Great Weapon Mastery", skill : 17, skillReq : 35,
@@ -995,11 +995,11 @@ const perkData = {
 	   description : "You've become familiar with battle axes.<br>[10% more damage, +10% armor penetration]"},
 	   //242
 	   {name : "Battle<br>Axe Focus", skill : 17, skillReq : 50,
-	   xPos : 38, yPos : 55, conTo : [240,241], preReqs : [240,241], nextPerk: 243,
+	   xPos : 38, yPos : 55, preReqs : [240,241], nextPerk: 243,
 	   description : "You've become an advanced battle axe fighter.<br>[15% more damage, +20% armor penetration]"},
 	   //243
 	   {name : "Battle<br>Axe Focus", skill : 17, skillReq : 75,
-	   xPos : 38, yPos : 55, conTo : [240,241,242], preReqs : [240,241,242], nextPerk: -1,
+	   xPos : 38, yPos : 55, preReqs : [240,241,242], nextPerk: -1,
 	   description : "You've become a master of battle axe combat.<br>[30% more damage, +30% armor penetration]"},
 	   //244
 	   {name : "Greatsword<br>Focus", skill : 17, skillReq : 25,
@@ -1007,11 +1007,11 @@ const perkData = {
 	   description : "You've learned the basics of greatsword combat.<br>[+8% attack speed with greatswords, +7% armor penetration]"},
 	   //245
 	   {name : "Greatsword<br>Focus", skill : 17, skillReq : 50,
-	   xPos : 62, yPos : 55, conTo : [240,244], preReqs : [240,244], nextPerk: 246,
+	   xPos : 62, yPos : 55, preReqs : [240,244], nextPerk: 246,
 	   description : "You've acquired the advanced techniques of greatsword combat.<br>[+16% attack speed with greatswords, +14% armor penetration]"},
 	   //246
 	   {name : "Greatsword<br>Focus", skill : 17, skillReq : 75,
-	   xPos : 62, yPos : 55, conTo : [240,244,245], preReqs : [240,244,245], nextPerk: -1,
+	   xPos : 62, yPos : 55, preReqs : [240,244,245], nextPerk: -1,
 	   description : "You've become a master of greatsword combat.<br>[+24% attack speed with greatswords, +21% armor penetration]"},
 	   //247
 	   {name : "Warhammer<br>Focus", skill : 17, skillReq : 25,
@@ -1019,11 +1019,11 @@ const perkData = {
 	   description : "You've learned some techniques to crush armor with warhammers.<br>[5% more power attack damage, +15% armor penetration]"},
 	   //248
 	   {name : "Warhammer<br>Focus", skill : 17, skillReq : 50,
-	   xPos : 62, yPos : 75, conTo : [240,247], preReqs : [240,247], nextPerk: 249,
+	   xPos : 62, yPos : 75, preReqs : [240,247], nextPerk: 249,
 	   description : "You've become an advanced warhammer fighter and know how to find weak spots in enemy armor.<br>[10% more power attack damage, +30% armor penetration]"},
 	   //249
 	   {name : "Warhammer<br>Focus", skill : 17, skillReq : 75,
-	   xPos : 62, yPos : 75, conTo : [240,247,248], preReqs : [240,247,248], nextPerk: -1,
+	   xPos : 62, yPos : 75, preReqs : [240,247,248], nextPerk: -1,
 	   description : "You've become a masterly warhammer fighter, rendering armor almost useless.<br>[15% more power attack damage, +45% armor penetration]"},
 	   //250
 	   {name : "Staff<br>Focus", skill : 17, skillReq : 25,
@@ -1031,11 +1031,11 @@ const perkData = {
 	   description : "You've learned the basics of quarterstaff combat.<br>[+10% attack speed with quarterstaves, +12% armor penetration]"},
 	   //251
 	   {name : "Staff<br>Focus", skill : 17, skillReq : 50,
-	   xPos : 38, yPos : 75, conTo : [240,250], preReqs : [240,250], nextPerk: 252,
+	   xPos : 38, yPos : 75, preReqs : [240,250], nextPerk: 252,
 	   description : "You've acquired the advanced techniques of quarterstaff combat.<br>[+20% attack speed with quarterstaves, +24% armor penetration]"},
 	   //252
 	   {name : "Staff<br>Focus", skill : 17, skillReq : 75,
-	   xPos : 38, yPos : 75, conTo : [240,250,251], preReqs : [240,250,251], nextPerk: -1,
+	   xPos : 38, yPos : 75, preReqs : [240,250,251], nextPerk: -1,
 	   description : "You've become a master of quarterstaff combat.<br>[+30% attack speed with quarterstaves, +36% armor penetration]"},
 	   //253
 	   {name : "Devastating Strike", skill : 17, skillReq : 50,
@@ -1047,7 +1047,7 @@ const perkData = {
 	   description : "Your power attacks are truly devastating and you can cut down multiple foes with a single sweeping blow.<br>[sideways power attack can hit multiple targets]"},
 	   //255
 	   {name : "Devastating Charge", skill : 17, skillReq : 75,
-	   xPos : 50, yPos : 15, conTo : [253,254], preReqs : [253,254], nextPerk: -1,
+	   xPos : 50, yPos : 15, preReqs : [253,254], nextPerk: -1,
 	   description : "You've learned to perform a leaping power attack while sprinting, reducing your enemies to smithereens.<br>[Able to do sprinting power attack]"},
 	   //256
 	   {name : "Reckless Strike", skill : 17, skillReq : 85,
