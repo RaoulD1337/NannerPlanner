@@ -34,8 +34,8 @@ function dataArrayCompare(a,b){
 //Returns true if character data was successfully parsed
 //from the build code.
 function initCharacterData(){
-  //let gotFromURL = parseCharacterDataFromURL();
-  let gotFromURL = false;
+  let gotFromURL = parseCharacterDataFromURL();
+
   if(!gotFromURL){
     characterData.race = 0;
     characterData.hmsIncreases = [0,0,0];
