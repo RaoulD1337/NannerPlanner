@@ -1,23 +1,15 @@
 $(document).ready(function(){
-
-  let presetNum = parsePresetFromURL();
-
-  curPreset = presetList[getIndexWithID(presetNum,presetList)];
-
-  curPerkList = perksList[curPreset.perks];
-  curRaceList = racesList[curPreset.races];
-  curGameMechanics = gameMechanicsList[curPreset.gameMechanics];
-  curBlessingList = blessingsList[curPreset.blessings];
-
-  sortDataLists();
+	
+	
+	
+	
   let gotBuild = initCharacterData();
-  updateCustomSelectOptions();
   updateSkillNames();
   updateSkillLevelsDisplay();
   drawMiniSkillTrees();
   updateActiveSkillPanel();
   updateRaceSelect();
-  updateStandingStoneSelect();
+  updateBirthsignSelect();
   updateBlessingSelect();
   updateAttributeText();
   updateCircleAndLineColors();
@@ -28,7 +20,7 @@ $(document).ready(function(){
     updateStuffFromCharacterCode();
   }
   
-  updateBuildCodeDisplay();
+  //updateBuildCodeDisplay();
   
   attachHandlers();
   
@@ -38,13 +30,10 @@ $(document).ready(function(){
 
 function updateStuffFromCharacterCode(){
   $("#oghmaSelect").val(characterData.oghmaChoice);
+  $("#blackBookSelect").val(characterData.blackBookPerks);
   $("#raceSelect").val(characterData.race);
-  $("#stoneSelect").val(characterData.standingStone);
+  $("#birthsignSelect").val(characterData.birthsign);
   $("#blessingSelect").val(characterData.blessing);
-  $("#perksSelect").val(curPerkList.id);
-  $("#racesListSelect").val(curRaceList.id);
-  $("#blessingsSelect").val(curBlessingList.id);
-  $("#mechanicsSelect").val(curGameMechanics.id);
   $("#healthIncreasesInput").val(characterData.hmsIncreases[0]);
   $("#magickaIncreasesInput").val(characterData.hmsIncreases[1]);
   $("#staminaIncreasesInput").val(characterData.hmsIncreases[2]);
@@ -53,7 +42,7 @@ function updateStuffFromCharacterCode(){
 
 function createDerivedAttributesTable() {
   let theTable = $("#derivedAttributeTable");
-  let derAttrData = curGameMechanics.derivedAttributes;
+  let derAttrData = gameMechanicsData.derivedAttributes;
   for(let i = 0; i < derAttrData.attribute.length; i++){
     let theRow = `<div class="derivedAttributeTableRow">`;
     theRow += `<div class="derivedAttributeTableCellLabel" id="derivedAttributeName${i}">`;
@@ -70,30 +59,27 @@ function attachHandlers(){
   $(".miniSkillTreeDiv").click(leftSideSkillClick);
   $(window).resize(resizeWindowHandler);
   $("#activeSkillLevelInput").on("change",skillInputChange);
-  $("#presetSelect").on("change",presetSelectChange);
-  $("#perksSelect").on("change",perkSelectChange);
   $("#raceSelect").on("change",raceSelectChange);
-  $("#racesListSelect").on("change",raceListSelectChange);
-  $("#blessingsSelect").on("change",blessingListSelectChange);
-  $("#mechanicsSelect").on("change",mechanicsListSelectChange);
-  $(".customCloseText").click(customClickDivClick);
   $("#resetActiveSkillButton").click(resetActiveSkillButtonClick);
   $("#resetAllSkillsButton").click(resetAllSkillsButtonClick);
   $(".attributeInput").on("keydown input",attributeInputChange);
   $("#oghmaSelect").on("change", oghmaSelectChange);
+  $("#blackBookSelect").on("change", blackBookSelectChange);
   $("#blessingSelect").on("change", blessingSelectChange);
-  $("#stoneSelect").on("change",stoneSelectChange);
+  $("#birthsignSelect").on("change",birthsignSelectChange);
   $("#buildCodeCopyText").click(buildCodeCopyTextClick);
 }
 
 function blessingSelectChange(){
   characterData.blessing = Number($(this).val());
+  updateAttributeText();
   updateBuildCodeDisplay();
   
 }
 
-function stoneSelectChange(){
-  characterData.standingStone = Number($(this).val());
+function birthsignSelectChange(){
+  characterData.birthsign = Number($(this).val());
+  updateAttributeText();
   updateBuildCodeDisplay();
 }
 
@@ -101,6 +87,12 @@ function oghmaSelectChange(){
   characterData.oghmaChoice = Number($("#oghmaSelect").val());
   updateCharacterLevelAndResults();
   updateAttributeText();
+  updateBuildCodeDisplay();
+}
+
+function blackBookSelectChange(){
+  characterData.blackBookPerks = Number($("#blackBookSelect").val());
+  updateCharacterLevelAndResults();
   updateBuildCodeDisplay();
 }
 
@@ -123,14 +115,22 @@ function attributeInputChange(){
 function updateAttributeText(){
   let answers = ["Health: ","Magicka: ","Stamina: "];
   let oghmaVal = Number($("#oghmaSelect").val());
+  let birthsignVal = Number($("#birthsignSelect").val());
+  let blessingVal = Number($("#blessingSelect").val());
+  
+  
+  
   for(let i = 0; i < 3; i++){
-    let baseVal = curRaceList.races[characterData.race].startingHMS[i];
-    baseVal += curGameMechanics.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
+    let baseVal = raceData.races[characterData.race].startingHMS[i];
+    baseVal += gameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
     
-    let bonuses = curRaceList.races[characterData.race].hmsBonus[i];
+    let bonuses = raceData.races[characterData.race].hmsBonus[i];
     if( (oghmaVal - 1) == i){
-      bonuses += curGameMechanics.oghmaData.hmsGiven[i];
+      bonuses += gameMechanicsData.oghmaData.hmsGiven[i];
     }
+	
+	bonuses += pBirthsignData.birthsigns[birthsignVal].hms[i];
+	bonuses += pBlessingData.blessings[blessingVal].hms[i];
     
     answers[i] += (baseVal+bonuses);
     
@@ -167,98 +167,8 @@ function resetAllSkillsButtonClick(){
   updateBuildCodeDisplay();
 }
 
-function customClickDivClick(){
-  $("#presetCustomOptionsDiv").toggle();
-}
-
-function raceListSelectChange(){
-  changeRaceList(Number($(this).val()));
-  updateBuildCodeDisplay();
-}
-
-function blessingListSelectChange(){
-  changeBlessingList(Number($(this).val()));
-  updateBuildCodeDisplay();
-}
-
-function mechanicsListSelectChange(){
-  changeGameMechanics(Number($(this).val()));
-  updateBuildCodeDisplay();
-}
-
-function changeGameMechanics(gmNum){
-  curGameMechanics = gameMechanicsList[getIndexWithID(gmNum,gameMechanicsList)];
-  updateCharacterLevelAndResults();
-  updateBuildCodeDisplay();
-}
-
-function changeRaceList(listNum){
-  curRaceList = racesList[getIndexWithID(listNum,racesList)];
-  updateRaceSelect();
-  changeRace(0,false);
-  updateBuildCodeDisplay();
-}
-
-function changeBlessingList(listNum){
-  curBlessingList = blessingsList[getIndexWithID(listNum,blessingsList)];
-  updateBlessingSelect();
-  updateBuildCodeDisplay();
-}
-
 function raceSelectChange(){
   changeRace(Number($(this).val()));
-  updateBuildCodeDisplay();
-}
-
-function presetSelectChange() {
-  let presetIndex = getIndexWithID(Number($(this).val()),presetList);
-  let preset = presetList[presetIndex];
-  curPreset = preset;
-  let oldVal = 0;
-  
-  oldVal = Number($("#perksSelect").val());
-  $("#perksSelect").val(preset.perks);
-  if(oldVal != preset.perks){
-    changePerkList(preset.perks);
-  }
-  
-  oldVal = Number($("#racesListSelect").val());
-  $("#racesListSelect").val(preset.races);
-  if(oldVal != preset.races){
-    changeRaceList(preset.races);
-  }
-  
-  oldVal = $("#mechanicsSelect").val();
-  $("#mechanicsSelect").val(preset.gameMechanics);
-  if(oldVal != preset.gameMechanics){
-    changeGameMechanics(preset.gameMechanics);
-  }
-  
-  oldVal = $("#blessingsSelect").val();
-  $("#blessingsSelect").val(preset.blessings);
-  if(oldVal != preset.blessings){
-    changeBlessingList(preset.blessings);
-  }
-  
-  updateBuildCodeDisplay();
-}
-
-function changePerkList(listNum){
-  curPerkList = perksList[getIndexWithID(listNum,perksList)];
-  //Just reset all of the selected perks.
-  characterData.spentPerks = 0;
-  characterData.perksTaken = [];
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    characterData.perksTaken.push(false);
-  }
-  
-  updateSkillNames();
-  drawMiniSkillTrees();
-  updateActiveSkillPanel();
-}
-
-function perkSelectChange(){
-  changePerkList(Number($(this).val()));
   updateBuildCodeDisplay();
 }
 
@@ -289,8 +199,8 @@ function activeSkillPerkClick(event){
   
   if(event.button == 0){//LMB
     let hasPerk = characterHasPerk(perkNum);
-    let isInChain = curPerkList.perks[perkNum].placeInChain != -1;
-    let isFirstInChain = curPerkList.perks[perkNum].prevPerk == -1;
+    let isInChain = pPerksData.perks[perkNum].placeInChain != -1;
+    let isFirstInChain = pPerksData.perks[perkNum].prevPerk == -1;
     
     let perkToTake = -1
     
@@ -300,7 +210,7 @@ function activeSkillPerkClick(event){
     }
     //Otherwise we clicked part of a chain and actually want to take the next one.
     else{
-      perkToTake = curPerkList.perks[perkNum].nextPerk;
+      perkToTake = pPerksData.perks[perkNum].nextPerk;
     }
     
     if(event.detail > 1 & !tookPerkWithLastClick){
@@ -337,20 +247,20 @@ function activeSkillPerkHoverEnter(event){
 
   let perkNum = Number($(this).attr("data-perknum"));
   let hasPerk = characterHasPerk(perkNum);
-  let isInChain = curPerkList.perks[perkNum].placeInChain != -1;
-  let isLastInChain = curPerkList.perks[perkNum].nextPerk == -1; 
+  let isInChain = pPerksData.perks[perkNum].placeInChain != -1;
+  let isLastInChain = pPerksData.perks[perkNum].nextPerk == -1; 
   
-  let skillReq = curPerkList.perks[perkNum].skillReq;
-  let descString = curPerkList.perks[perkNum].description;
+  let skillReq = pPerksData.perks[perkNum].skillReq;
+  let descString = pPerksData.perks[perkNum].description;
   if(skillReq > 0){
     descString += ` (Skill Req: ${skillReq})`
   }
   $("#highlightedPerkDesc").html(descString);
   
   if(hasPerk && isInChain && !isLastInChain){
-    let nextPerkNum = curPerkList.perks[perkNum].nextPerk;
-    let nextPerkReq = curPerkList.perks[nextPerkNum].skillReq;
-    let nextPerkDescString = curPerkList.perks[nextPerkNum].description;
+    let nextPerkNum = pPerksData.perks[perkNum].nextPerk;
+    let nextPerkReq = pPerksData.perks[nextPerkNum].skillReq;
+    let nextPerkDescString = pPerksData.perks[nextPerkNum].description;
     let nextDescString = `<b>Next rank:</b> ${nextPerkDescString} (Skill Req: ${nextPerkReq})`;
     
     $("#highlightedNextPerkDesc").html(nextDescString);
@@ -397,7 +307,7 @@ function updateLevelAndFreePerksDisplay(){
 }
 
 function updateActiveSkillPanel(){
-  $("#activeSkillDisplayName").html(curPerkList.skillNames[activeSkill]);
+  $("#activeSkillDisplayName").html(pPerksData.skillNames[activeSkill]);
   updateCharacterLevelAndResults();
   $("#activeSkillLevelInput").val(characterData.skillLevels[activeSkill]);
   drawActiveSkillTree();
@@ -411,7 +321,7 @@ function drawActiveSkillTree(){
   $("#activeSkillDisplaySVG > line").remove();
   $("#activeSkillDisplaySVG > text").remove();
   
-  let perks = curPerkList.perks;
+  let perks = pPerksData.perks;
   let theSVG = $("#activeSkillDisplaySVG");
   let svgWidth = theSVG.width();
   let svgHeight = theSVG.height();
@@ -495,7 +405,7 @@ function drawActiveSkillTree(){
   $("#activeSkillDisplaySVG").html($("#activeSkillDisplaySVG").html())
   
   $("#activeSkillLevelInput").attr("min",
-    curRaceList.races[characterData.race].startingSkills[activeSkill]);
+    raceData.races[characterData.race].startingSkills[activeSkill]);
   
   //Re-attach the handlers to all of the circles
   attachActiveSkillHandlers();
@@ -503,8 +413,8 @@ function drawActiveSkillTree(){
 
 function updateCircleAndLineColors(){
   //First handle the active skill
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    let thePerk = curPerkList.perks[i];
+  for(let i = 0; i < pPerksData.perks.length; i++){
+    let thePerk = pPerksData.perks[i];
     let hasPerk = characterHasPerk(i);
     //Handle the active skill display
     if(thePerk.skill == activeSkill){
@@ -537,8 +447,8 @@ function updateCircleAndLineColors(){
     }
   }
   //Then the mini-skill trees
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    let thePerk = curPerkList.perks[i];
+  for(let i = 0; i < pPerksData.perks.length; i++){
+    let thePerk = pPerksData.perks[i];
     //We only drew the first perk in the chain, so nothing to do for the rest
     if (thePerk.prevPerk != -1) continue;
     
@@ -563,7 +473,7 @@ function updateCircleAndLineColors(){
       let shouldBeRed = false;
       let checkingNum = i;
       while(checkingNum != -1){
-        let checking = curPerkList.perks[checkingNum];
+        let checking = pPerksData.perks[checkingNum];
         if(characterHasPerk(checkingNum) &&
             checking.skillReq > characterData.skillLevels[checking.skill])
         {
@@ -589,7 +499,7 @@ function drawMiniSkillTrees() {
     $(`#skill${i}SVG`).html("")
   }
   
-  let perks = curPerkList.perks;
+  let perks = pPerksData.perks;
   //Draw the connecting lines. Do this first so that the circles will be
   //drawn on top of them.
   for(let i = 0; i < perks.length; i++)
@@ -646,10 +556,10 @@ function miniPerkHoverEnter(event){
 
   let perkNum = Number($(this).attr("data-perknum"));
   let hasPerk = characterHasPerk(perkNum);
-  let isInChain = curPerkList.perks[perkNum].placeInChain != -1;
+  let isInChain = pPerksData.perks[perkNum].placeInChain != -1;
   
   $("#highlightedPerkDiv").removeClass("errorMessageDiv");
-  $("#highlightedPerkDesc").html(curPerkList.perks[perkNum].name);
+  $("#highlightedPerkDesc").html(pPerksData.perks[perkNum].name);
   $("#highlightedNextPerkDesc").empty();
   
   $("#highlightedPerkDiv").css({left : `${clientRect.left-80}px`, top : `${clientRect.top+5}px`, display: "block"}); 
@@ -657,7 +567,7 @@ function miniPerkHoverEnter(event){
 
 function updateSkillNames() {
   for(let i = 0; i < 18; i++){
-    $("#skill" + (i+1) + "Name").html(curPerkList.skillNames[i]);
+    $("#skill" + (i+1) + "Name").html(pPerksData.skillNames[i]);
   }
 }
 
@@ -669,69 +579,29 @@ function updateSkillLevelsDisplay(){
 }
 
 
-function updateCustomSelectOptions(){
-  
-  let presetSel = $("#presetSelect");
-  presetSel.empty();
-  for(let i = 0; i < presetList.length; i++){
-    presetSel.append(`<option value="${presetList[i].id}">${presetList[i].name}</option>`);
-  }
-  presetSel.val(curPreset.id);
-  
-  let perksSel = $("#perksSelect");
-  perksSel.empty();
-  for(let i = 0; i < perksList.length; i++){
-    perksSel.append(`<option value="${perksList[i].id}">${perksList[i].name}</option>`);
-  }
-  perksSel.val(curPerkList.id);
-  
-  let racesSel = $("#racesListSelect");
-  racesSel.empty();
-  for(let i = 0; i < racesList.length; i++){
-    racesSel.append(`<option value="${racesList[i].id}">${racesList[i].name}</option>`);
-  }
-  racesSel.val(curRaceList.id);
-  
-  let mechanicsSel = $("#mechanicsSelect");
-  mechanicsSel.empty();
-  for(let i = 0; i < gameMechanicsList.length; i++){
-    mechanicsSel.append(`<option value="${gameMechanicsList[i].id}">${gameMechanicsList[i].name}</option>`);
-  }
-  mechanicsSel.val(curGameMechanics.id);
-  
-  let blessingsSel = $("#blessingsSelect");
-  blessingsSel.empty();
-  for(let i = 0; i < blessingsList.length; i++){
-    blessingsSel.append(`<option value="${blessingsList[i].id}">${blessingsList[i].name}</option>`);
-  }
-  blessingsSel.val(curBlessingList.id);
-}
-
-
 function updateRaceSelect(){
   let raceSel = $("#raceSelect");
   raceSel.empty();
-  for(let i = 0; i < curRaceList.races.length; i++){
-    raceSel.append(`<option value="${i}">${curRaceList.races[i].name}</option>`);
+  for(let i = 0; i < pRaceData.races.length; i++){
+    raceSel.append(`<option value="${i}">${pRaceData.races[i].name}</option>`);
   }
 }
 
 function updateBlessingSelect(){
   let blessSel = $("#blessingSelect");
   blessSel.empty();
-  for(let i = 0; i < curBlessingList.blessings.length; i++){
-    blessSel.append(`<option value="${i}">${curBlessingList.blessings[i]}</option>`);
+  for(let i = 0; i < pBlessingData.blessings.length; i++){
+    blessSel.append(`<option value="${i}">${pBlessingData.blessings[i].name}</option>`);
   }
 }
 
-function updateStandingStoneSelect(){
-  let ssSelect = $("#stoneSelect");
-  ssSelect.empty();
-  for(let i = 0; i < standingStoneNames.length; i++){
-    ssSelect.append(`<option value="${i}">${standingStoneNames[i]}</option>`);
+function updateBirthsignSelect(){
+  let bsSelect = $("#birthsignSelect");
+  bsSelect.empty();
+  for(let i = 0; i < pBirthsignData.birthsigns.length; i++){
+    bsSelect.append(`<option value="${i}">${pBirthsignData.birthsigns[i].name}</option>`);
   }
 }
-
 
 function updateCharacterLevelAndResults(){
   calcCharacterLevelAndResults();
@@ -763,13 +633,15 @@ function updateFreeAttributeChoicesDisplay(){
   }
 }
 
+
+
 function buildCodeCopyTextClick(){
   navigator.clipboard.writeText($("#buildCodeText").val()).then(function() {
     $("#buildCopiedMessage").show();
     clearTimeout(copiedMessageTimeoutID);
     copiedMessageTimeoutID = setTimeout(function() {$("#buildCopiedMessage").hide();},2000);
   }, function() {
-  /* clipboard write failed */
+  // clipboard write failed 
 });
 }
 
@@ -778,10 +650,11 @@ function updateBuildCodeDisplay(){
   let buildCheck = validateBuild();
   if(buildCheck.valid){
     let code = generateBuildCode();
-    let buildLink = `https://raould1337.github.io/NannerPlanner/?p=${curPreset.id}&b=${code}`;
+    let buildLink = `https://raould1337.github.io/NannerPlanner/?b=${code}`;
     $("#buildCodeText").val(buildLink);
   }
   else{
     $("#buildCodeText").val(buildCheck.message);
   }
 }
+

@@ -1,13 +1,8 @@
-var perksList = [];
-var racesList = [];
-var gameMechanicsList = [];
-var presetList = [];
-var blessingsList = [];
-var curPerkList;
-var curRaceList;
-var curGameMechanics;
-var curPreset;
-var curBlessingList;
+var pRaceData;
+var pBlessingData;
+var pBirthsignData;
+var pGameMechanicsData;
+var pPerksData;
 var activeSkill = 0;
 var tookPerkWithLastClick = false;
 var copiedMessageTimeoutID = -1;
@@ -18,43 +13,16 @@ var characterData = {
   skillLevels: [],
   perksTaken: [],
   oghmaChoice: 0, //0 for nothing, 1 for health, 2 for magicka, 3 for stam
-  perkListID: 0,
-  raceListID: 0,
-  gameMechanicsListID: 0,
+  blackBookPerks: 0,
   level: 1,
   attrIncreases: 0,
-  earnedPerks : 3,
+  earnedPerks : 0,
   earnedAttributes: 0,
   spentPerks: 0, //The number of perks actually taken
   standingStone : 0,
   blessing : 0
 };
 
-//Returns the preset number given in the URL.
-//Returns 0 if one was not given
-function parsePresetFromURL(){
-  const queryString = window.location.search;
-  const params = new URLSearchParams(queryString);
-  if(params.has("p")){
-    let presetNum = Number(params.get("p"));
-    if(isNaN(presetNum) || presetNum < 0 || presetNum > presetList.length){
-      presetNum = 0;
-    }
-    return presetNum;
-  }
-  else {
-    return 0;
-  }
-  
-}
-
-//Sort all of the data lists by name alphabetically
-function sortDataLists(){
-  perksList.sort(dataArrayCompare);
-  racesList.sort(dataArrayCompare);
-  gameMechanicsList.sort(dataArrayCompare);
-  presetList.sort(dataArrayCompare);
-}
 
 //Helper function for sorting an array of game data by their names
 function dataArrayCompare(a,b){
@@ -66,25 +34,23 @@ function dataArrayCompare(a,b){
 //Returns true if character data was successfully parsed
 //from the build code.
 function initCharacterData(){
-  let gotFromURL = parseCharacterDataFromURL();
+  //let gotFromURL = parseCharacterDataFromURL();
+  let gotFromURL = false;
   if(!gotFromURL){
     characterData.race = 0;
     characterData.hmsIncreases = [0,0,0];
     characterData.skillLevels = [];
     for(let i = 0; i < 18; i++){
-      characterData.skillLevels.push(curRaceList.races[0].startingSkills[i]);
+      characterData.skillLevels.push(pRaceData.races[0].startingSkills[i]);
     }
     characterData.perksTaken = [];
-    for(let i = 0; i < curPerkList.perks.length; i++){
+    for(let i = 0; i < pPerksData.perks.length; i++){
       characterData.perksTaken.push(false);
     }
     characterData.oghmaChoice = 0;
-    characterData.perkListID = 0;
-    characterData.raceListID = 0;
-    characterData.gameMechanicsListID = 0;
     characterData.level = 1;
     characterData.attrIncreases = 0;
-    characterData.earnedPerks = curGameMechanics.initialPerks;
+    characterData.earnedPerks = pGameMechanicsData.initialPerks;
     characterData.spentPerks = 0;
     characterData.standingStone = 0;
     characterData.blessing = 0;
@@ -98,7 +64,7 @@ function initCharacterData(){
 //TODO: change this to add effects to the character to be used
 //in calculating final attribute values.
 function updateDerivedAttributes(){
-  let derAttrData = curGameMechanics.derivedAttributes;
+  let derAttrData = pGameMechanicsData.derivedAttributes;
   let baseAttributes = calcBaseAttributes();
   for(let i = 0; i < derAttrData.attribute.length; i++){
     let weightedSum = baseAttributes[0] * derAttrData.weight_health[i];
@@ -125,8 +91,8 @@ function updateDerivedAttributes(){
 function calcBaseAttributes(){
   let theAnswer = [0,0,0];
   for(let i = 0; i < 3; i++){
-    theAnswer[i] = curRaceList.races[characterData.race].startingHMS[i];
-    theAnswer[i] += curGameMechanics.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
+    theAnswer[i] = pRaceData.races[characterData.race].startingHMS[i];
+    theAnswer[i] += pGameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
   }
   return theAnswer;
 }
@@ -139,14 +105,14 @@ function resetSkill(skillNum){
   if(removeAll){
     for(let i = 0; i < 18; i++){
       characterData.skillLevels[i] = 
-        curRaceList.races[characterData.race].startingSkills[i];
+        pRaceData[characterData.race].startingSkills[i];
     }
   }
   characterData.skillLevels[skillNum] = 
-    curRaceList.races[characterData.race].startingSkills[skillNum];
+    pRaceData[characterData.race].startingSkills[skillNum];
     
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    if( (removeAll || curPerkList.perks[i].skill == skillNum) 
+  for(let i = 0; i < perks.perks.length; i++){
+    if( (removeAll || perks.perks[i].skill == skillNum) 
       && characterHasPerk(i) ){
       removePerkAndDependents(i);
     }
@@ -159,8 +125,8 @@ function resetSkill(skillNum){
 //just take into account the starting skills of the new race.
 function changeRace(newRaceNum,respectOld = true){
   let oldRaceNum = characterData.race;
-  let oldRace = curRaceList.races[oldRaceNum];
-  let newRace = curRaceList.races[newRaceNum];
+  let oldRace = pRaceData[oldRaceNum];
+  let newRace = pRaceData[newRaceNum];
   
   //Adjust skills based for the new race.
   //If skills are below the staring value for the new race,
@@ -196,11 +162,11 @@ function removeInvalidPerks(skillNum){
   let skillLev = characterData.skillLevels[skillNum];
   let checkAll = skillNum == -1;
   
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    if( (curPerkList.perks[i].skill != skillNum && !checkAll) || !characterHasPerk(i)){
+  for(let i = 0; i < pPerksData.perks.length; i++){
+    if( (pPerksData.perks[i].skill != skillNum && !checkAll) || !characterHasPerk(i)){
           continue;
     }
-    if(skillLev < curPerkList.perks[i].skillReq){
+    if(skillLev < pPerksData.perks[i].skillReq){
       removePerkAndDependents(i);
       answer = true;
     }
@@ -219,7 +185,7 @@ function removeInvalidPerks(skillNum){
 //it's pre-reqs)
 function forceTakePerk(perkNum){
   
-  let thePerk = curPerkList.perks[perkNum];
+  let thePerk = pPerksData.perks[perkNum];
   let hasPerk = characterHasPerk(perkNum);
   let meetsSkillReq = thePerk.skillReq <= characterData.skillLevels[thePerk.skill]
   
@@ -227,9 +193,9 @@ function forceTakePerk(perkNum){
     let errorMessage = "This perk requires at least one of the following other perks: ";
     for(let i = 0; i < thePerk.preReqs.length; i++){
       if(thePerk.preReqs[i] < 0){
-        errorMessage += curPerkList.perks[Math.abs(thePerk.preReqs[i])].name;
-        if(curPerkList.perks[Math.abs(thePerk.preReqs[i])].placeInChain > 0){
-          errorMessage += " " + curPerkList.perks[Math.abs(thePerk.preReqs[i])].placeInChain;
+        errorMessage += pPerksData.perks[Math.abs(thePerk.preReqs[i])].name;
+        if(pPerksData.perks[Math.abs(thePerk.preReqs[i])].placeInChain > 0){
+          errorMessage += " " + pPerksData.perks[Math.abs(thePerk.preReqs[i])].placeInChain;
         }
         if(i == (thePerk.preReqs.length - 1)){
           errorMessage += ". ";
@@ -271,7 +237,7 @@ function forceTakePerk(perkNum){
 //to take. If there is an OR but we already have one of them, that's fine.
 function wouldNeedChoiceToForce(perkNum){
   //first check this perk to see if there's an OR that we don't satisfy
-  let thePerk = curPerkList.perks[perkNum];
+  let thePerk = pPerksData.perks[perkNum];
   let hasOrPerks = false;
   let satisfiesOrPerks = false;
   for(let i = 0; i < thePerk.preReqs.length; i++){
@@ -323,18 +289,18 @@ function hasPerkPreReqs(perkNum){
   let hasOrPerks = false;
   let satisfiesOrPerks = false;
   
-  if(curPerkList.perks[perkNum].skillReq > characterData.skillLevels[curPerkList.perks[perkNum].skill])
+  if(pPerksData.perks[perkNum].skillReq > characterData.skillLevels[pPerksData.perks[perkNum].skill])
     return false;
   
-  for(let i = 0; i < curPerkList.perks[perkNum].preReqs.length; i++){
-    if(curPerkList.perks[perkNum].preReqs[i] < 0){
+  for(let i = 0; i < pPerksData.perks[perkNum].preReqs.length; i++){
+    if(pPerksData.perks[perkNum].preReqs[i] < 0){
       hasOrPerks = true;
-      if(characterHasPerk(Math.abs(curPerkList.perks[perkNum].preReqs[i]))){
+      if(characterHasPerk(Math.abs(pPerksData.perks[perkNum].preReqs[i]))){
         satisfiesOrPerks = true;
       }
     }
     else{
-      if(!characterHasPerk(curPerkList.perks[perkNum].preReqs[i])) return false;
+      if(!characterHasPerk(pPerksData.perks[perkNum].preReqs[i])) return false;
     }
   }
   
@@ -359,7 +325,7 @@ function actuallyRemovePerk(perkNum){
 //it to be taken. Assumes the given perk can actually be removed.
 function removePerkAndDependents(perkNum){
   actuallyRemovePerk(perkNum);
-  for(let i = 0; i < curPerkList.perks.length; i++){
+  for(let i = 0; i < pPerksData.perks.length; i++){
     if(characterHasPerk(i) && !hasPerkPreReqs(i)){
       removePerkAndDependents(i);
     }
@@ -383,78 +349,78 @@ function characterHasPerk(perkNum){
 }
 
 //Don't need to do any processing here (yet).
-function addRaceData(raceData){
-  racesList.push(raceData);
+function ProcessRaceData(data){
+  pRaceData = data;
 }
 
 //Don't need to do any processing here (yet).
-function addBlessingsData(blessingData){
-  blessingsList.push(blessingData);
+function ProcessBlessingData(data){
+  pBlessingData = data;
+}
+
+//Don't need to do any processing here (yet).
+function ProcessBirthsignData(data){
+  pBirthsignData = data;
 }
 
 //Do some additional processing on the perk data,
 //primarily to identify skill chains and add some extra
 //fields to make dealing with them easier.
-function addPerkData(perkData){
+function ProcessPerkData(data){
   //First add the prevPerk property
-  for(let i = 0; i < perkData.perks.length; i++){
-    let nextPerk = perkData.perks[i].nextPerk
+  for(let i = 0; i < data.perks.length; i++){
+    let nextPerk = data.perks[i].nextPerk
     if(nextPerk != -1){
-      perkData.perks[nextPerk].prevPerk = i;
+      data.perks[nextPerk].prevPerk = i;
     }
   }
   //Then find those with the prevPerk property defined and nextPerk == -1
   //These are the ends of the chains
   //If prevPerk isn't defined and nextPerk is -1, then it's not in a chain at all.
-  for(let i = 0; i < perkData.perks.length; i++){
+  for(let i = 0; i < data.perks.length; i++){
 
-    if( !("prevPerk" in perkData.perks[i]) && perkData.perks[i].nextPerk == -1){
+    if( !("prevPerk" in data.perks[i]) && data.perks[i].nextPerk == -1){
       //Not in chain
-      perkData.perks[i].prevPerk = -1;
-      perkData.perks[i].totalInChain = -1;
-      perkData.perks[i].placeInChain = -1;
+      data.perks[i].prevPerk = -1;
+      data.perks[i].totalInChain = -1;
+      data.perks[i].placeInChain = -1;
     }
-    else if(perkData.perks[i].nextPerk != -1 && !("prevPerk" in perkData.perks[i])){
-      perkData.perks[i].prevPerk = -1;
+    else if(data.perks[i].nextPerk != -1 && !("prevPerk" in data.perks[i])){
+      data.perks[i].prevPerk = -1;
       //The start of a chain
       //First count how many are in the chain
       let totalInChain = 1;
       let checking = i;
       
-      while(perkData.perks[checking].nextPerk != -1){
+      while(data.perks[checking].nextPerk != -1){
         totalInChain++;
-        checking = perkData.perks[checking].nextPerk; 
+        checking = data.perks[checking].nextPerk; 
       }
       //Then add the total and running total to each in the chain
       checking = i;
       for(let j = 1; j <= totalInChain; j++){
-        perkData.perks[checking].totalInChain = totalInChain;
-        perkData.perks[checking].placeInChain = j;
-        checking = perkData.perks[checking].nextPerk; 
+        data.perks[checking].totalInChain = totalInChain;
+        data.perks[checking].placeInChain = j;
+        checking = data.perks[checking].nextPerk; 
       }
     }
   }
   
-  perksList.push(perkData);
+  pPerksData = data;
+  
 }
 
 //A little processing to do here: build a table of the cumulative amount
 //of character XP is needed to get to each level
-function addGameMechanicsData(gameData){
-  
-  gameData.xpTable = [0];
+function ProcessGameMechanicsData(data){
+  data.xpTable = [0];
   
   for(let i = 1; i < 99; i++){
-    gameData.xpTable.push(
-       gameData.xpTable[i-1] + gameData.leveling.base + i * gameData.leveling.mult);
+    data.xpTable.push(
+       data.xpTable[i-1] + data.leveling.base + i * data.leveling.mult);
   }
   
-  gameMechanicsList.push(gameData);
-}
-
-//Don't need to to any pre-processing here.
-function addPresetData(presetData){
-  presetList.push(presetData);
+  pGameMechanicsData = data;
 }
 
 //Search the given array of data for the one with id given.
@@ -477,8 +443,8 @@ function calcLevel(){
   let totalXP = calcTotalXP();
   
   //Don't need to check i=0 because the value there should always be 0
-  for(let i = 1; i < curGameMechanics.xpTable.length; i++){
-    if(totalXP < curGameMechanics.xpTable[i]) return i;
+  for(let i = 1; i < gameMechanicsData.xpTable.length; i++){
+    if(totalXP < gameMechanicsData.xpTable[i]) return i;
   }
   // How would we ever get here???
   return 1;
@@ -488,7 +454,7 @@ function calcLevel(){
 function calcTotalXP(){
   let answer = 0;
   for(let i = 0; i < 18; i++){
-    let baseSkill = curRaceList.races[characterData.race].startingSkills[i];
+    let baseSkill = pRaceData.races[characterData.race].startingSkills[i];
     let currentSkill = characterData.skillLevels[i];
     if(baseSkill == currentSkill) continue;
     
@@ -507,15 +473,13 @@ function calcFreeAttributeChoices(){
     characterData.hmsIncreases[1] + characterData.hmsIncreases[2]);
 }
 
+
+
 //Generate just the build code part of the build sharing URL,
 //i.e. b=?
 function generateBuildCode(){
   let version = 2;
   let code = String.fromCodePoint(version);
-  code += String.fromCodePoint(curPerkList.id);
-  code += String.fromCodePoint(curRaceList.id);
-  code += String.fromCodePoint(curGameMechanics.id);
-  code += String.fromCodePoint(curBlessingList.id);
   code += String.fromCodePoint(characterData.level);
   code += String.fromCodePoint(characterData.hmsIncreases[0]);
   code += String.fromCodePoint(characterData.hmsIncreases[1]);
@@ -524,6 +488,7 @@ function generateBuildCode(){
     code += String.fromCodePoint(characterData.skillLevels[i]);
   }
   code += String.fromCodePoint(characterData.oghmaChoice << 4);
+  code += String.fromCodePoint(characterData.blackBookPerks);
   code += String.fromCodePoint(characterData.race);
   code += String.fromCodePoint(characterData.standingStone);
   code += String.fromCodePoint(characterData.blessing);
@@ -582,35 +547,28 @@ function parseCharacterDataFromURL(){
 
 //Decode build data made using v1 of the encoder
 function buildCodeParserV1(buildCode){
-  let perkListID = buildCode.charCodeAt(1);
-  curPerkList = perksList[getIndexWithID(perkListID,perksList)];
-  let raceListID = buildCode.charCodeAt(2);
-  curRaceList = racesList[getIndexWithID(raceListID,racesList)];
-  let gmID = buildCode.charCodeAt(3);
-  curGameMechanics = gameMechanicsList[getIndexWithID(gmID,gameMechanicsList)];
-  let blessingsID = buildCode.charCodeAt(4);
-  curBlessingList = blessingsList[getIndexWithID(blessingsID,blessingsList)];
   
-  characterData.level = buildCode.charCodeAt(5);
-  characterData.hmsIncreases[0] = buildCode.charCodeAt(6);
-  characterData.hmsIncreases[1] = buildCode.charCodeAt(7);
-  characterData.hmsIncreases[2] = buildCode.charCodeAt(8);
+  characterData.level = buildCode.charCodeAt(1);
+  characterData.hmsIncreases[0] = buildCode.charCodeAt(2);
+  characterData.hmsIncreases[1] = buildCode.charCodeAt(3);
+  characterData.hmsIncreases[2] = buildCode.charCodeAt(4);
   
   characterData.skillLevels = [];
   
   for(let i = 0; i < 18; i++){
-    characterData.skillLevels.push(buildCode.charCodeAt(9+i));
+    characterData.skillLevels.push(buildCode.charCodeAt(5+i));
   }
   
-  characterData.oghmaChoice = buildCode.charCodeAt(27);
-  characterData.race = buildCode.charCodeAt(28);
-  characterData.standingStone = buildCode.charCodeAt(29);
-  characterData.blessing = buildCode.charCodeAt(30);
+  characterData.oghmaChoice = buildCode.charCodeAt(23);
+  characterData.blackBookPerks = buildCode.charCodeAt(24);
+  characterData.race = buildCode.charCodeAt(25);
+  characterData.standingStone = buildCode.charCodeAt(26);
+  characterData.blessing = buildCode.charCodeAt(27);
   
   characterData.perksTaken = [];
   //this method will be kind of inefficient but EHHHHHHH
-  for(let i = 0; i < curPerkList.perks.length; i++){
-    let index = 31 + Math.floor(i/8);
+  for(let i = 0; i < pPerksData.perks.length; i++){
+    let index = 28 + Math.floor(i/8);
     let offset = 7 - (i % 8);
     let hasPerk = (buildCode.charCodeAt(index) & (1 << offset)) > 0;
     characterData.perksTaken.push(hasPerk);
@@ -653,6 +611,8 @@ function validateBuild(){
   return answer;
 }
 
+
+
 //Check if the character meets all of the pre-reqs for all of the 
 //perks they have Return true if so.
 function checkAllPerksValid(){
@@ -670,9 +630,11 @@ function calcCharacterLevelAndResults(){
   let newLevel = calcLevel();
   characterData.level = newLevel;
   characterData.earnedAttributes = newLevel - 1;
-  characterData.earnedPerks = curGameMechanics.initialPerks + (newLevel-1);
+  characterData.earnedPerks = pGameMechanicsData.initialPerks + (newLevel-1);
   
   if(characterData.oghmaChoice > 0){
-    characterData.earnedPerks += curGameMechanics.oghmaData.perksGiven;
+    characterData.earnedPerks += pGameMechanicsData.oghmaData.perksGiven;
   }
+  
+  characterData.earnedPerks += characterData.blackBookPerks;
 }

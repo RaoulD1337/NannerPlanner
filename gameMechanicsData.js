@@ -1,6 +1,4 @@
-const threebftweaksGameMechanicsData = {
-  name: "3BFTweaks",
-  id : 0,
+const gameMechanicsData = {
   
   initialPerks: 3,
   
@@ -12,7 +10,7 @@ const threebftweaksGameMechanicsData = {
   leveling: {
     base : 75,
     mult : 25,
-    hmsGiven : [7,5,5]
+    hmsGiven : [5,5,5]
   },
   
   derivedAttributes : {
@@ -96,4 +94,4 @@ const threebftweaksGameMechanicsData = {
   }
 };
 
-addGameMechanicsData(threebftweaksGameMechanicsData);
+ProcessGameMechanicsData(gameMechanicsData);

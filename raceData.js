@@ -1,6 +1,4 @@
-const threebftweaksRaceData = {
-  name : "3BFTweaks",
-  id: 0,
+const raceData = {
   
   races : [
     {
@@ -265,4 +263,5 @@ const threebftweaksRaceData = {
     }
   ]
 };
-addRaceData(threebftweaksRaceData);
+
+ProcessRaceData(raceData);

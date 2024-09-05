@@ -4,13 +4,12 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/deepmerge@4.2.2/dist/umd.js"></script>
   <script src="planner.js"></script>
-  <script src="ui.js"></script>
-  <script src="perkListData.js"></script>
-  <script src="raceListData.js"></script>
+  <script src="perkData.js"></script>
+  <script src="raceData.js"></script>
   <script src="gameMechanicsData.js"></script>
-  <script src="presetData.js"></script>
-  <script src="blessingsData.js"></script>
-  <script src="standingStoneData.js"></script>
+  <script src="blessingData.js"></script>
+  <script src="birthsignData.js"></script>
+  <script src="ui.js"></script>
   <link rel="stylesheet" href="planner.css">
   <title>NannerPlanner</title>
   <link rel="shortcut icon" href="nanner.ico" />
@@ -26,8 +25,8 @@
           <select id="raceSelect">
           </select>
         </div>
-        <div class="selectInputWithLabel" id="stoneSelectInputDiv">Standing Stone
-          <select id="stoneSelect">
+        <div class="selectInputWithLabel" id="birthsignInputDiv">Birthsign
+          <select id="birthsignSelect">
           </select>
         </div>
         <div class="selectInputWithLabel" id="blessingSelectInputDiv">Blessing
@@ -59,7 +58,19 @@
             <input class="attributeInput" type="number" id="staminaIncreasesInput" min="0" max="0" step="1" value="0"/>
           </span>
         </div>
-        <div class="selectInputWithSmallLabel" id="oghmaInputDiv">Oghma Infinium Choice
+		<div class="selectInputWithSmallLabel" id="blackBookInputDiv">Black Books
+          <select id="blackBookSelect">
+			<option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+          </select>
+        </div>
+		<div class="selectInputWithSmallLabel" id="oghmaInputDiv">Oghma Infinium
           <select id="oghmaSelect">
             <option value="0">None</option>
             <option value="1">Health</option>
