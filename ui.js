@@ -31,7 +31,7 @@ $(document).ready(function(){
 function updateStuffFromCharacterCode(){
   $("#oghmaSelect").val(characterData.oghmaChoice);
   $("#blackBookSelect").val(characterData.blackBookPerks);
-  $("#extendedPathSelect").val(characterData.extendedPathPerks);
+  $("#extendedPathInput").val(characterData.extendedPathPerks);
   $("#raceSelect").val(characterData.race);
   $("#birthsignSelect").val(characterData.birthsign);
   $("#blessingSelect").val(characterData.blessing);

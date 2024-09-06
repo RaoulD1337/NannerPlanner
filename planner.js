@@ -79,8 +79,6 @@ function updateDerivedAttributes(){
       bonus = derAttrData.prefactor[i] * Math.sqrt(weightedSum - derAttrData.threshold[i]);
       bonus = Math.floor(bonus);
     }
-	
-	bonus += pGameMechanicsData.leveling.extraMR;
     
     bonus = "+" + bonus;
     
