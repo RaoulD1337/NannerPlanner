@@ -79,6 +79,8 @@ function updateDerivedAttributes(){
       bonus = derAttrData.prefactor[i] * Math.sqrt(weightedSum - derAttrData.threshold[i]);
       bonus = Math.floor(bonus);
     }
+	
+	bonus += pGameMechanicsData.leveling.extraMR;
     
     bonus = "+" + bonus;
     
@@ -88,6 +90,9 @@ function updateDerivedAttributes(){
     
     $(`#derivedAttributeValue${i}`).html(bonus);
   }
+  
+  
+  
 }
 
 //Determine the base attributes for the character: starting race value + any selected increases.
@@ -122,14 +127,16 @@ function resetSkill(skillNum){
   }
 }
 
+
+
 //Change the character's race to the new one with the number given.
 //If respectOld is true, the starting skills of the old race will
 //be taken into account when determining new skills levels. Otherwise
 //just take into account the starting skills of the new race.
 function changeRace(newRaceNum,respectOld = true){
   let oldRaceNum = characterData.race;
-  let oldRace = pRaceData[oldRaceNum];
-  let newRace = pRaceData[newRaceNum];
+  let oldRace = pRaceData.races[oldRaceNum];
+  let newRace = pRaceData.races[newRaceNum];
   
   //Adjust skills based for the new race.
   //If skills are below the staring value for the new race,
@@ -426,15 +433,6 @@ function ProcessGameMechanicsData(data){
   pGameMechanicsData = data;
 }
 
-//Search the given array of data for the one with id given.
-//Return the index into the arra of data where it is found, -1 if it is not found.
-function getIndexWithID(id,dataArray){
-  for(let i = 0; i < dataArray.length; i++){
-    if(dataArray[i].id == id) return i;
-  }
-  return -1;
-}
-
 //Calculate how many free perks the character has left.
 function calcFreePerks(){
   return characterData.earnedPerks - characterData.spentPerks;
@@ -475,8 +473,6 @@ function calcFreeAttributeChoices(){
   return characterData.earnedAttributes - (characterData.hmsIncreases[0] +
     characterData.hmsIncreases[1] + characterData.hmsIncreases[2]);
 }
-
-
 
 //Generate just the build code part of the build sharing URL,
 //i.e. b=?

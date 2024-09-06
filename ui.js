@@ -43,7 +43,7 @@ function updateStuffFromCharacterCode(){
 
 function createDerivedAttributesTable() {
   let theTable = $("#derivedAttributeTable");
-  let derAttrData = gameMechanicsData.derivedAttributes;
+  let derAttrData = pGameMechanicsData.derivedAttributes;
   for(let i = 0; i < derAttrData.attribute.length; i++){
     let theRow = `<div class="derivedAttributeTableRow">`;
     theRow += `<div class="derivedAttributeTableCellLabel" id="derivedAttributeName${i}">`;
@@ -101,12 +101,12 @@ function blackBookSelectChange(){
 
 function attributeInputChange(){
   
-  validateAttributeInput($(this));
+	validateAttributeInput($(this));
   
-  //Just be lazy and update them all at the same time.
-  characterData.hmsIncreases[0] = Number($("#healthIncreasesInput").val());
-  characterData.hmsIncreases[1] = Number($("#magickaIncreasesInput").val());
-  characterData.hmsIncreases[2] = Number($("#staminaIncreasesInput").val());
+	//Just be lazy and update them all at the same time.
+	characterData.hmsIncreases[0] = Number($("#healthIncreasesInput").val());
+	characterData.hmsIncreases[1] = Number($("#magickaIncreasesInput").val());
+	characterData.hmsIncreases[2] = Number($("#staminaIncreasesInput").val());
   
   updateAttributeChoiceInputs();
   updateFreeAttributeChoicesDisplay();
@@ -128,30 +128,55 @@ function updateAttributeText(){
   let oghmaVal = Number($("#oghmaSelect").val());
   let birthsignVal = Number($("#birthsignSelect").val());
   let blessingVal = Number($("#blessingSelect").val());
+  let baseHms = [];
+  let bonusHms = [];
+  let totalIncreases = 0;
+
   
   for(let i = 0; i < 3; i++){
+	totalIncreases += characterData.hmsIncreases[i];
+	if(totalIncreases>20){
+		totalIncreases = pGameMechanicsData.leveling.maxLevel;
+	}
+	  
     let baseVal = raceData.races[characterData.race].startingHMS[i];
-    baseVal += gameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
+    baseVal += pGameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
     
     let bonuses = raceData.races[characterData.race].hmsBonus[i];
     if( (oghmaVal - 1) == i){
-      bonuses += gameMechanicsData.oghmaData.hmsGiven[i];
+      bonuses += pGameMechanicsData.oghmaData.hmsGiven[i];
     }
 	
 	bonuses += pBirthsignData.birthsigns[birthsignVal].hms[i];
 	bonuses += pBlessingData.blessings[blessingVal].hms[i];
-    
-    answers[i] += (baseVal+bonuses);
-    
-    if(bonuses > 0){
-      answers[i] += ` (${baseVal}+${bonuses})`;
-    } 
+	
+	baseHms[i] = baseVal;
+	bonusHms[i] = bonuses;
+	
   }
   
+	baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*totalIncreases;
+
+  
+  for(let i = 0; i < 3; i++){
+	  
+	answers[i] += (baseHms[i]+bonusHms[i]);
+	
+    if(bonusHms[i] > 0){
+      answers[i] += ` (${baseHms[i]}+${Math.abs(bonusHms[i])})`;
+    } 
+	if(bonusHms[0] < 0){
+      answers[i] += ` (${baseHms[i]}-${Math.abs(bonusHms[i])})`;
+    } 
+  }
+
   $("#healthAttributeText").html(answers[0]);
   $("#magickaAttributeText").html(answers[1]);
   $("#staminaAttributeText").html(answers[2]);
 }
+
+
+
 
 function validateAttributeInput(theInput){
   let val = Number(theInput.val());
@@ -175,6 +200,8 @@ function resetAllSkillsButtonClick(){
   updateSkillLevelsDisplay();
   updateBuildCodeDisplay();
 }
+
+
 
 function raceSelectChange(){
   changeRace(Number($(this).val()));

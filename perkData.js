@@ -71,15 +71,15 @@ const perkData = {
 	   description : "You've discovered a way to make your body more resilient to all kinds of diseases and poisons."},
 	  //11
 	  {name : "Fortified<br>Muscles", skill : 0, skillReq : 80,
-	   xPos : 42, yPos : 47, preReqs : [10], nextPerk: -1,
+	   xPos : 42, yPos : 47, preReqs : [-10], nextPerk: -1,
 	   description : "Having ingested a preparation of troll fat and mammoth heart fermented in Strange Remains, you've become more resilient to harm and your body can excrete toxic waste products more efficiently."},
 	  //12
 	  {name : "Alchemical<br>Intellect", skill : 0, skillReq : 100,
-	   xPos : 58, yPos : 47, preReqs : [10], nextPerk: -1,
+	   xPos : 58, yPos : 47, preReqs : [-10], nextPerk: -1,
 	   description : "Having altered your body with extracts from a Dremora's Heart and Ectoplasm, your mind has transcended mortal limits, expanding your magicka and improving your spell casting."},
 	  //13
 	  {name : "Purification Process", skill : 0, skillReq : 100,
-	   xPos : 50, yPos : 5, preReqs : [10], nextPerk: -1,
+	   xPos : 50, yPos : 5, preReqs : [-10], nextPerk: -1,
 	   description : "You've found a method to eliminate disadvantages from your mixtures while making them even more potent. All created potions are 10% more potent, while all beneficial potions are a further 5% more potent. Lastly, health/magicka/stamina-restoring potions are a further 5% more potent."},
 	  //14
 	  {name : "Novice Alteration", skill : 1, skillReq : 0,
@@ -303,7 +303,7 @@ const perkData = {
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //69
 	  {name : "Elemental Expertise", skill : 4, skillReq : 60,
-	   xPos : 70, yPos : 55, preReqs : [56,58], nextPerk: -1,
+	   xPos : 70, yPos : 55, preReqs : [56,69], nextPerk: -1,
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //70
 	  {name : "Electrostatic<br>Discharge", skill : 4, skillReq : 75,
@@ -428,7 +428,7 @@ const perkData = {
 	   //100
 	  {name : "Meteoric Reflexes", skill : 6, skillReq : 100,
 	   xPos : 47, yPos : 10, preReqs : [97,99], nextPerk: -1,
-	   description : "You require no extra stamina for power attacks when wearing heavy armor and are less hindered by your armor. Also, your gauntlets improve your unarmed damage."},
+	   description : "Your reflexes are lightning fast and allow you to avoid half of incoming damage from<br>melee attacks while not wearing a heavy cuirass, provided you have enough stamina."},
 	   //101
 	  {name : "Conditioning", skill : 7, skillReq : 0,
 	   xPos : 50, yPos : 90, preReqs : [], nextPerk: -1,
@@ -879,7 +879,7 @@ const perkData = {
 	   description : "Ebony weapons and armour - some even fail at heating the metal. But not you. <br>Now that you've studied the related schematics, you can craft and improve ebony equipment with ease, as well as craft expert-tier master keys."},
 	   //213
 	  {name : "Daedric Smithing", skill : 14, skillReq : 100,
-	   xPos : 71, yPos : 20, preReqs : [212], nextPerk: -1,
+	   xPos : 71, yPos : 20, preReqs : [-212], nextPerk: -1,
 	   description : "The creation of daedric weapons and armor is a secret few mortals know - still, <br> somehow you managed to acquire the knowledge and skill to manage the feat."},
 	   //214
 	  {name : "Stalhrim<br>Smithing", skill : 14, skillReq : 85,

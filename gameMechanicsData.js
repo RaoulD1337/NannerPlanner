@@ -10,7 +10,10 @@ const gameMechanicsData = {
   leveling: {
     base : 75,
     mult : 25,
-    hmsGiven : [5,5,5]
+    hmsGiven : [5,5,5],
+	extraHms : [2,0,0],
+	extraMR : 0.3,
+	maxLevel : 20
   },
   
   derivedAttributes : {
