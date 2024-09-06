@@ -31,6 +31,7 @@ $(document).ready(function(){
 function updateStuffFromCharacterCode(){
   $("#oghmaSelect").val(characterData.oghmaChoice);
   $("#blackBookSelect").val(characterData.blackBookPerks);
+  $("#extendedPathSelect").val(characterData.extendedPathPerks);
   $("#raceSelect").val(characterData.race);
   $("#birthsignSelect").val(characterData.birthsign);
   $("#blessingSelect").val(characterData.blessing);
@@ -65,6 +66,7 @@ function attachHandlers(){
   $(".attributeInput").on("keydown input",attributeInputChange);
   $("#oghmaSelect").on("change", oghmaSelectChange);
   $("#blackBookSelect").on("change", blackBookSelectChange);
+  $("#extendedPathInput").on("keydown input", extendedPathInputChange);
   $("#blessingSelect").on("change", blessingSelectChange);
   $("#birthsignSelect").on("change",birthsignSelectChange);
   $("#buildCodeCopyText").click(buildCodeCopyTextClick);
@@ -96,6 +98,7 @@ function blackBookSelectChange(){
   updateBuildCodeDisplay();
 }
 
+
 function attributeInputChange(){
   
   validateAttributeInput($(this));
@@ -112,13 +115,19 @@ function attributeInputChange(){
   updateBuildCodeDisplay();
 }
 
+function extendedPathInputChange(){
+  
+  characterData.extendedPathPerks = Number($("#extendedPathInput").val());
+  
+  updateCharacterLevelAndResults();
+  updateBuildCodeDisplay();
+}
+
 function updateAttributeText(){
   let answers = ["Health: ","Magicka: ","Stamina: "];
   let oghmaVal = Number($("#oghmaSelect").val());
   let birthsignVal = Number($("#birthsignSelect").val());
   let blessingVal = Number($("#blessingSelect").val());
-  
-  
   
   for(let i = 0; i < 3; i++){
     let baseVal = raceData.races[characterData.race].startingHMS[i];

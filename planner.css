@@ -177,8 +177,8 @@ svg > text, .unselectable {
 
 .selectInputWithLabel {
   font-size:20px;
-  margin-top:5px;
-  margin-bottom:5px;
+  margin-top:3px;
+  margin-bottom:1px;
 }
 
 .selectInputWithLabel select {
@@ -264,6 +264,12 @@ svg > text, .unselectable {
 }
 
 .attributeInputAndLabelDiv {
+  text-align:left;
+  margin-left:20%;
+  margin-bottom:10px;
+}
+
+.extendedPathInputAndLabelDiv {
   text-align:left;
   margin-left:20%;
   margin-bottom:10px;

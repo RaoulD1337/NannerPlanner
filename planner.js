@@ -14,6 +14,7 @@ var characterData = {
   perksTaken: [],
   oghmaChoice: 0, //0 for nothing, 1 for health, 2 for magicka, 3 for stam
   blackBookPerks: 0,
+  extendedPathPerks: 0,
   level: 1,
   attrIncreases: 0,
   earnedPerks : 0,
@@ -48,6 +49,8 @@ function initCharacterData(){
       characterData.perksTaken.push(false);
     }
     characterData.oghmaChoice = 0;
+	characterData.blackBookPerks = 0;
+	characterData.extendedPathPerks = 0;
     characterData.level = 1;
     characterData.attrIncreases = 0;
     characterData.earnedPerks = pGameMechanicsData.initialPerks;
@@ -489,6 +492,7 @@ function generateBuildCode(){
   }
   code += String.fromCodePoint(characterData.oghmaChoice << 4);
   code += String.fromCodePoint(characterData.blackBookPerks);
+  code += String.fromCodePoint(characterData.extendedPathPerks);
   code += String.fromCodePoint(characterData.race);
   code += String.fromCodePoint(characterData.birthsign);
   code += String.fromCodePoint(characterData.blessing);
@@ -561,14 +565,16 @@ function buildCodeParserV1(buildCode){
   
   characterData.oghmaChoice = buildCode.charCodeAt(23);
   characterData.blackBookPerks = buildCode.charCodeAt(24);
-  characterData.race = buildCode.charCodeAt(25);
-  characterData.birthsign = buildCode.charCodeAt(26);
-  characterData.blessing = buildCode.charCodeAt(27);
+  characterData.extendedPathPerks = buildCode.charCodeAt(25);
+  
+  characterData.race = buildCode.charCodeAt(26);
+  characterData.birthsign = buildCode.charCodeAt(27);
+  characterData.blessing = buildCode.charCodeAt(28);
   
   characterData.perksTaken = [];
   //this method will be kind of inefficient but EHHHHHHH
   for(let i = 0; i < pPerksData.perks.length; i++){
-    let index = 28 + Math.floor(i/8);
+    let index = 29 + Math.floor(i/8);
     let offset = 7 - (i % 8);
     let hasPerk = (buildCode.charCodeAt(index) & (1 << offset)) > 0;
     characterData.perksTaken.push(hasPerk);
@@ -637,4 +643,5 @@ function calcCharacterLevelAndResults(){
   }
   
   characterData.earnedPerks += characterData.blackBookPerks;
+  characterData.earnedPerks += characterData.extendedPathPerks;
 }
