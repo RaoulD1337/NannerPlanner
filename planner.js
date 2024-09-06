@@ -108,14 +108,14 @@ function resetSkill(skillNum){
   if(removeAll){
     for(let i = 0; i < 18; i++){
       characterData.skillLevels[i] = 
-        pRaceData[characterData.race].startingSkills[i];
+        pRaceData.races[characterData.race].startingSkills[i];
     }
   }
   characterData.skillLevels[skillNum] = 
-    pRaceData[characterData.race].startingSkills[skillNum];
+    pRaceData.races[characterData.race].startingSkills[skillNum];
     
-  for(let i = 0; i < perks.perks.length; i++){
-    if( (removeAll || perks.perks[i].skill == skillNum) 
+  for(let i = 0; i < pPerksData.perks.length; i++){
+    if( (removeAll || pPerksData.perks[i].skill == skillNum) 
       && characterHasPerk(i) ){
       removePerkAndDependents(i);
     }
