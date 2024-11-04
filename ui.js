@@ -165,7 +165,7 @@ function updateAttributeText(){
     if(bonusHms[i] > 0){
       answers[i] += ` (${baseHms[i]}+${Math.abs(bonusHms[i])})`;
     } 
-	if(bonusHms[0] < 0){
+	if(bonusHms[i] < 0){
       answers[i] += ` (${baseHms[i]}-${Math.abs(bonusHms[i])})`;
     } 
   }
