@@ -122,7 +122,7 @@ const perkData = {
 	   xPos : 72, yPos : 37, preReqs : [15], nextPerk: -1,
 	   description : "Your Mage Armor spells are able to block a part of a dangerous spell's effect, increasing with higher rank Mage Armor"},
 	   //24
-	  {name : "Stability", skill : 1, skillReq : 50,
+	  {name : "Stability", skill : 1, skillReq : 55,
 	   xPos : 42, yPos : 22, preReqs : [16], nextPerk: -1,
 	   description : "You've become exceptionally good at making your alteration spells more stable. Thus, they now last longer."},
 	   //25
@@ -212,7 +212,7 @@ const perkData = {
 	   //46
 	  {name : "Ritualism", skill : 3, skillReq : 50,
 	   xPos : 62, yPos : 34, preReqs : [45], nextPerk: -1,
-	   description : "Your knowledge of the realms of the dead surpasses that of many and decreases the effort needed to raise or summon the dead and ghosts."},
+	   description : "Your knowledge of the realms of the dead surpasses that of many and decreases the effort needed to raise or summon the dead and ghosts from greater distances."},
 	   //47
 	  {name : "Dark<br>Infusion", skill : 3, skillReq : 90,
 	   xPos : 60, yPos : 15, preReqs : [46], nextPerk: -1,
@@ -471,15 +471,15 @@ const perkData = {
 	   description : "After extensive training, you can strike with confidence even while being hit.<br>[Take 50% less melee damage when bullrushing, -10% armor weight penalty, and increasing stamina restored when struck when wearing 1/2/3/4 pieces of heavy armor]"},
 	   //111
 	  {name : "Toxin<br>Nullification", skill : 7, skillReq : 25,
-	   xPos : 50, yPos : 52, preReqs : [110], nextPerk: -1,
+	   xPos : 50, yPos : 45, preReqs : [110], nextPerk: -1,
 	   description : "For each piece of heavy armor worn, you can further withstand poison by 5%, and by an extra 10% if a full suit is donned."},
 	   //112
 	  {name : "Elemental<br>Nullification", skill : 7, skillReq : 50,
-	   xPos : 50, yPos : 35, preReqs : [111], nextPerk: -1,
+	   xPos : 35, yPos : 35, preReqs : [110], nextPerk: -1,
 	   description : "For each piece of heavy armor worn, you can further withstand elemental attacks by 2.5%, and by an extra 5% if a full suit is donned."},
 	   //113
 	  {name : "Magic<br>Nullification", skill : 7, skillReq : 75,
-	   xPos : 50, yPos : 20, preReqs : [112], nextPerk: -1,
+	   xPos : 65, yPos : 25, preReqs : [110], nextPerk: -1,
 	   description : "For each piece of heavy armor worn, you can further withstand magical attacks by 2.5%, and by an extra 5% if a full suit is donned."},
 	   //114
 	  {name : "Novice<br>Illusion", skill : 8, skillReq : 0,

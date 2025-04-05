@@ -12,7 +12,25 @@ const gameMechanicsData = {
     mult : 25,
     hmsGiven : [5,7,6],
 	extraHms : [2,0,0],
-	extraMR : 0.3
+	extraMR : 0.33
+  },
+  
+  supernatural: {
+	  vampire : [ 	50,					//health
+					50,					//magicka
+					50,					//stamina
+					115,				//Disease Resist
+					100 				//Poison Resist
+					],
+	werewolf : [	50,					//health
+					50,					//Stamina
+					25,					//carryweight
+					//15,					//unarmed
+					25,					//stamina regen
+					-15,				//spell Cost
+					-33,				//magicka regen
+					-50					//poison Resist
+					]
   },
   
   derivedAttributes : {

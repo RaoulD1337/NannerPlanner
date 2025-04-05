@@ -65,6 +65,7 @@ function initCharacterData(){
   return gotFromURL;
 }
 
+//OBSOLETE
 //Update the table of derived attributes on the left panel.
 //TODO: change this to add effects to the character to be used
 //in calculating final attribute values.
@@ -96,18 +97,29 @@ function updateDerivedAttributes(){
 // Ftweaks 5.0 new Derived Attribute System
 function updateDerivedAttributesActive(){
 	let derAttrData = pGameMechanicsData.derivedAttributes;
+	let totalIncreases = characterData.hmsIncreases[0] + characterData.hmsIncreases[1] + characterData.hmsIncreases[2];
+	offset = 5;
 	
 	for(let i = 0; i <= characterData.derivedAttributesIncreases.length; i++){
 		
-		bonus = derAttrData.increase[i+5] * characterData.derivedAttributesIncreases[i];
+		bonus = derAttrData.increase[i+offset] * characterData.derivedAttributesIncreases[i];
+		
+		if(i == 3 && totalIncreases <=20){
+			bonus += (pGameMechanicsData.leveling.extraMR * totalIncreases);
+		}
     
+		bonus = Math.round(bonus * 100) / 100;
+	
 		bonus = "+" + bonus;
+		
+		
+			
     
-		if(derAttrData.isPercent[i+5]){
+		if(derAttrData.isPercent[i+offset]){
 			bonus += "%";
 		}
     
-		$(`#derivedAttributeValue${i+5}`).html(bonus);
+		$(`#derivedAttributeValue${i+offset}`).html(bonus);
 	}
 }
 
@@ -125,6 +137,8 @@ function updateDerivedAttributesPassive(){
 		if(i == 2 || i == 4){
 			bonus = derAttrData.increase[i] * characterData.hmsIncreases[2];
 		}
+		
+		Math.round(bonus * 100) / 100;
 		
 		bonus = "+" + bonus;
 		
@@ -154,6 +168,10 @@ function calcBaseAttributes(){
     theAnswer[i] += pGameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
   }
   return theAnswer;
+}
+
+function resetDerivedAttr(){
+	
 }
 
 //Remove all perks from the skill and set the skill level back

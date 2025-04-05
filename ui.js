@@ -39,6 +39,18 @@ function updateStuffFromCharacterCode(){
   $("#healthIncreasesInput").val(characterData.hmsIncreases[0]);
   $("#magickaIncreasesInput").val(characterData.hmsIncreases[1]);
   $("#staminaIncreasesInput").val(characterData.hmsIncreases[2]);
+  
+  $("#damageResistDerivedInput").val(characterData.derivedAttributesIncreases[0]);
+  $("#meleeDamageDerivedInput").val(characterData.derivedAttributesIncreases[1]);
+  $("#shoutCooldownDerivedInput").val(characterData.derivedAttributesIncreases[2]);
+  
+  $("#magicResistDerivedInput").val(characterData.derivedAttributesIncreases[3]);
+  $("#spellCostDerivedInput").val(characterData.derivedAttributesIncreases[4]);
+  $("#spellPowerDerivedInput").val(characterData.derivedAttributesIncreases[5]);
+  
+  $("#moveSpeedDerivedInput").val(characterData.derivedAttributesIncreases[6]);
+  $("#marksmanDamageDerivedInput").val(characterData.derivedAttributesIncreases[7]);
+  $("#attackSpeedDerivedInput").val(characterData.derivedAttributesIncreases[8]);
   updateCharacterLevelAndResults();
 }
 
@@ -108,7 +120,7 @@ function blackBookInputChange(){
 
 
 function derivedChoiceInputChange(){
-	//validateAttributeInput($(this));
+	validateAttributeInput($(this));
 	
 	// We continue being lazy
 	characterData.derivedAttributesIncreases[0] = Number($("#damageResistDerivedInput").val());
@@ -119,8 +131,6 @@ function derivedChoiceInputChange(){
 	characterData.derivedAttributesIncreases[4] = Number($("#spellCostDerivedInput").val());
 	characterData.derivedAttributesIncreases[5] = Number($("#spellPowerDerivedInput").val());
 	
-	console.log(Number($("#spellPowerDerivedInput").val()));
-	
 	characterData.derivedAttributesIncreases[6] = Number($("#moveSpeedDerivedInput").val());
 	characterData.derivedAttributesIncreases[7] = Number($("#marksmanDamageDerivedInput").val());
 	characterData.derivedAttributesIncreases[8] = Number($("#attackSpeedDerivedInput").val());
@@ -128,7 +138,7 @@ function derivedChoiceInputChange(){
 	
 	updateDerivedAttributesActive();
 	updateDerivedAttributesInputs();
-  updateBuildCodeDisplay();
+	updateBuildCodeDisplay();
 }
 
 function attributeInputChange(){
@@ -188,7 +198,7 @@ function updateAttributeText(){
 	bonusHms[i] = bonuses;
 	
   }
-	if(totalIncreases < 20){
+	if(totalIncreases <= 20){
 		baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*totalIncreases;
 	}
   
@@ -207,6 +217,8 @@ function updateAttributeText(){
   $("#healthAttributeText").html(answers[0]);
   $("#magickaAttributeText").html(answers[1]);
   $("#staminaAttributeText").html(answers[2]);
+  
+  updateDerivedAttributesActive();
 }
 
 
