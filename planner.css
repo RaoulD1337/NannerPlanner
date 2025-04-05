@@ -79,7 +79,7 @@ h1 {
   border: 1px solid black;
   display: flex;
   padding: 3px;
-  background-color:slateblue;
+  background-color:MidnightBlue;
   color:white;
   border-radius:25px;
 }
@@ -182,16 +182,19 @@ svg > text, .unselectable {
 }
 
 .selectInputWithLabel select {
+
   float:right;
   width:65%;
   font-size:14px;
 }
 
 .selectInputWithSmallLabel {
-  font-size:16px;
+  text-align:left;
+  margin-left:20%;
+  font-size:15px;
   margin-top:5px;
   margin-bottom:5px;
-  text-align:center;
+
 }
 
 .selectInputWithSmallLabel select {
@@ -253,23 +256,58 @@ svg > text, .unselectable {
   margin-bottom:15px;
 }
 
+#oghmaSelect{
+	font-size:15px;
+}
+
+.derivedChoiceDiv {
+  display: flex;
+  justify-content: right; /* center the row */
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.derivedChoiceLabelInputDiv {
+  display: flex;
+  flex-direction: column; /* stack label and input vertically */
+  align-items: center; /* center content horizontally */
+  text-align: center;
+  width: 100px;
+}
+
+.derivedChoiceText {
+  margin-bottom: 2px;
+  font-size: 11px;
+}
+
+.derivedChoiceInput {
+  font-size: 11px;
+  box-sizing: border-box;
+  text-align: center; /* center the input value */
+  width:45px;
+}
+
+
 .numberInputWithLabel{
+	font-size:15px;
   float:right;
 }
 
 .numberInputWithLabel input {
   width:50px;
   text-align:right;
-  font-size:14px;
+  font-size:13px;
 }
 
 .attributeInputAndLabelDiv {
+	font-size:15px;
   text-align:left;
   margin-left:20%;
   margin-bottom:10px;
 }
 
-.extendedPathInputAndLabelDiv {
+.perkInputAndLabelDiv {
+	font-size:15px;
   text-align:left;
   margin-left:20%;
   margin-bottom:10px;
@@ -291,14 +329,14 @@ svg > text, .unselectable {
 .derivedAttributeTableCellLabel{
   display:table-cell;
   padding:5px 5px 5px 10px;
-  font-size:16px;
+  font-size:13px;
   text-align:left;
 }
 
 .derivedAttributeTableCellValue{
   display:table-cell;
   padding:5px 5px 5px 10px;
-  font-size:16px;
+  font-size:13px;
   text-align:right;
 }
 

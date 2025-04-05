@@ -37,29 +37,80 @@
       <div id="attributesDiv" class="statsSubsectionDiv">
         <div class="subsectionSubtitle">Attributes</div>
         <div id="attributesToSpendDiv">Attribute Choices Remaining: 0</div>
+		
         <div class="attributeInputAndLabelDiv">
-          <span id="healthAttributeText" class="attributeText">Health: 100</span>
+          <span id="healthAttributeText" class="attributeText">Health: </span>
           <span class="numberInputWithLabel">
             <span class="increasesLabel">Increases:</span>
             <input class="attributeInput" type="number" id="healthIncreasesInput" min="0" max="0" step="1" value="0"/>
           </span>
         </div>
         <div class="attributeInputAndLabelDiv">
-          <span id="magickaAttributeText" class="attributeText">Magicka: 100</span>
+          <span id="magickaAttributeText" class="attributeText">Magicka: </span>
           <span class="numberInputWithLabel">
             <span class="increasesLabel">Increases:</span>
             <input class="attributeInput" type="number" id="magickaIncreasesInput" min="0" max="0" step="1" value="0"/>
           </span>
         </div>
         <div class="attributeInputAndLabelDiv">
-          <span id="staminaAttributeText" class="attributeText">Stamina: 100</span>
+          <span id="staminaAttributeText" class="attributeText">Stamina: </span>
           <span class="numberInputWithLabel">
             <span class="increasesLabel">Increases:</span>
             <input class="attributeInput" type="number" id="staminaIncreasesInput" min="0" max="0" step="1" value="0"/>
           </span>
         </div>
 		
-		<div class="extendedPathInputAndLabelDiv">
+		
+		
+		<div class="derivedChoiceDiv">
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="damageResistDerivedChoiceText" class="derivedChoiceText">Damage Resist</span>
+				<input class="derivedChoiceInput" type="number" id="damageResistDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="meleeDamageDerivedChoiceText" class="derivedChoiceText">Melee Damage</span>
+				<input class="derivedChoiceInput" type="number" id="meleeDamageDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="shoutCooldownDerivedChoiceText" class="derivedChoiceText">Shout CD</span>
+				<input class="derivedChoiceInput" type="number" id="shoutCooldownDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+        </div>
+
+		<div class="derivedChoiceDiv">
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="magicResistDerivedChoiceText" class="derivedChoiceText">Magic Resist</span>
+				<input class="derivedChoiceInput" type="number" id="magicResistDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="spellCostDerivedChoiceText" class="derivedChoiceText">Spell Cost</span>
+				<input class="derivedChoiceInput" type="number" id="spellCostDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="spellPowerDerivedChoiceText" class="derivedChoiceText">Spell Power</span>
+				<input class="derivedChoiceInput" type="number" id="spellPowerDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+        </div>
+		
+		<div class="derivedChoiceDiv">
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="moveSpeedDerivedChoiceText" class="derivedChoiceText">Move Speed</span>
+				<input class="derivedChoiceInput" type="number" id="moveSpeedDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="marksmanDamageDerivedChoiceText" class="derivedChoiceText">Marksman Damage</span>
+				<input class="derivedChoiceInput" type="number" id="marksmanDamageDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+			<div class="derivedChoiceLabelInputDiv">
+				<span id="attackSpeedDerivedChoiceText" class="derivedChoiceText">Attack Speed</span>
+				<input class="derivedChoiceInput" type="number" id="attackSpeedDerivedInput" min="0" max="0" step="1" value="0"/>
+			</div>
+        </div>
+		
+		
+		
+		
+		<div class="perkInputAndLabelDiv">
           <span id="extendedPathInputText" class="attributeText">Extended Path Potions</span>
           <span class="numberInputWithLabel">
             <span class="increasesLabel">Perks:</span>
@@ -67,18 +118,14 @@
           </span>
         </div>
 		
-		<div class="selectInputWithSmallLabel" id="blackBookInputDiv">Black Books
-          <select id="blackBookSelect">
-			<option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-          </select>
+		<div class="perkInputAndLabelDiv">
+          <span id="blackBookInputText" class="attributeText">Black Books</span>
+          <span class="numberInputWithLabel">
+            <span class="increasesLabel">Perks:</span>
+            <input class="blackBookInput" type="number" id="blackBookInput" min="0" max="7" step="1" value="0"/>
+          </span>
         </div>
+		
 		<div class="selectInputWithSmallLabel" id="oghmaInputDiv">Oghma Infinium
           <select id="oghmaSelect">
             <option value="0">None</option>

@@ -303,7 +303,7 @@ const perkData = {
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //69
 	  {name : "Elemental Expertise", skill : 4, skillReq : 60,
-	   xPos : 70, yPos : 55, preReqs : [56,69], nextPerk: -1,
+	   xPos : 70, yPos : 55, preReqs : [56,68], nextPerk: -1,
 	   description : "You now are able to intensify the heat of your fire spells, energize your lightning spells, sharpen your wind spells, and lower the temperature of your ice spells. Thus, <br> they now deal increased damage. In addition, you will no longer suffer a damage penalty on all elemental spells."},
 	   //70
 	  {name : "Electrostatic<br>Discharge", skill : 4, skillReq : 75,

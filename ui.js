@@ -14,7 +14,8 @@ $(document).ready(function(){
   updateAttributeText();
   updateCircleAndLineColors();
   createDerivedAttributesTable();
-  updateDerivedAttributes();
+  updateDerivedAttributesActive();
+  updateDerivedAttributesPassive();
   
   if(gotBuild){
     updateStuffFromCharacterCode();
@@ -30,7 +31,7 @@ $(document).ready(function(){
 
 function updateStuffFromCharacterCode(){
   $("#oghmaSelect").val(characterData.oghmaChoice);
-  $("#blackBookSelect").val(characterData.blackBookPerks);
+  $("#blackBookInput").val(characterData.blackBookPerks);
   $("#extendedPathInput").val(characterData.extendedPathPerks);
   $("#raceSelect").val(characterData.race);
   $("#birthsignSelect").val(characterData.birthsign);
@@ -44,6 +45,7 @@ function updateStuffFromCharacterCode(){
 function createDerivedAttributesTable() {
   let theTable = $("#derivedAttributeTable");
   let derAttrData = pGameMechanicsData.derivedAttributes;
+  
   for(let i = 0; i < derAttrData.attribute.length; i++){
     let theRow = `<div class="derivedAttributeTableRow">`;
     theRow += `<div class="derivedAttributeTableCellLabel" id="derivedAttributeName${i}">`;
@@ -64,8 +66,9 @@ function attachHandlers(){
   $("#resetActiveSkillButton").click(resetActiveSkillButtonClick);
   $("#resetAllSkillsButton").click(resetAllSkillsButtonClick);
   $(".attributeInput").on("keydown input",attributeInputChange);
+  $(".derivedChoiceInput").on("keydown input",derivedChoiceInputChange);
   $("#oghmaSelect").on("change", oghmaSelectChange);
-  $("#blackBookSelect").on("change", blackBookSelectChange);
+  $("#blackBookInput").on("keydown input", blackBookInputChange);
   $("#extendedPathInput").on("keydown input", extendedPathInputChange);
   $("#blessingSelect").on("change", blessingSelectChange);
   $("#birthsignSelect").on("change",birthsignSelectChange);
@@ -92,12 +95,41 @@ function oghmaSelectChange(){
   updateBuildCodeDisplay();
 }
 
-function blackBookSelectChange(){
-  characterData.blackBookPerks = Number($("#blackBookSelect").val());
+function blackBookInputChange(){
+	
+	validateAttributeInput($(this));
+	
+	perks = Number($("#blackBookInput").val());
+	
+  characterData.blackBookPerks = perks;
   updateCharacterLevelAndResults();
   updateBuildCodeDisplay();
 }
 
+
+function derivedChoiceInputChange(){
+	//validateAttributeInput($(this));
+	
+	// We continue being lazy
+	characterData.derivedAttributesIncreases[0] = Number($("#damageResistDerivedInput").val());
+	characterData.derivedAttributesIncreases[1] = Number($("#meleeDamageDerivedInput").val());
+	characterData.derivedAttributesIncreases[2] = Number($("#shoutCooldownDerivedInput").val());
+	
+	characterData.derivedAttributesIncreases[3] = Number($("#magicResistDerivedInput").val());
+	characterData.derivedAttributesIncreases[4] = Number($("#spellCostDerivedInput").val());
+	characterData.derivedAttributesIncreases[5] = Number($("#spellPowerDerivedInput").val());
+	
+	console.log(Number($("#spellPowerDerivedInput").val()));
+	
+	characterData.derivedAttributesIncreases[6] = Number($("#moveSpeedDerivedInput").val());
+	characterData.derivedAttributesIncreases[7] = Number($("#marksmanDamageDerivedInput").val());
+	characterData.derivedAttributesIncreases[8] = Number($("#attackSpeedDerivedInput").val());
+	
+	
+	updateDerivedAttributesActive();
+	updateDerivedAttributesInputs();
+  updateBuildCodeDisplay();
+}
 
 function attributeInputChange(){
   
@@ -110,14 +142,19 @@ function attributeInputChange(){
   
   updateAttributeChoiceInputs();
   updateFreeAttributeChoicesDisplay();
+  updateDerivedAttributesInputs();
   updateAttributeText();
-  updateDerivedAttributes();
+  updateDerivedAttributesPassive();
   updateBuildCodeDisplay();
 }
 
 function extendedPathInputChange(){
+	
+	validateAttributeInput($(this));
+	
+  perks = Number($("#extendedPathInput").val());
   
-  characterData.extendedPathPerks = Number($("#extendedPathInput").val());
+  characterData.extendedPathPerks = perks;
   
   updateCharacterLevelAndResults();
   updateBuildCodeDisplay();
@@ -135,10 +172,7 @@ function updateAttributeText(){
   
   for(let i = 0; i < 3; i++){
 	totalIncreases += characterData.hmsIncreases[i];
-	if(totalIncreases>20){
-		totalIncreases = pGameMechanicsData.leveling.maxLevel;
-	}
-	  
+	
     let baseVal = raceData.races[characterData.race].startingHMS[i];
     baseVal += pGameMechanicsData.leveling.hmsGiven[i] * characterData.hmsIncreases[i];
     
@@ -154,9 +188,9 @@ function updateAttributeText(){
 	bonusHms[i] = bonuses;
 	
   }
-  
-	baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*totalIncreases;
-
+	if(totalIncreases < 20){
+		baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*totalIncreases;
+	}
   
   for(let i = 0; i < 3; i++){
 	  
@@ -169,7 +203,7 @@ function updateAttributeText(){
       answers[i] += ` (${baseHms[i]}-${Math.abs(bonusHms[i])})`;
     } 
   }
-
+  
   $("#healthAttributeText").html(answers[0]);
   $("#magickaAttributeText").html(answers[1]);
   $("#staminaAttributeText").html(answers[2]);
@@ -654,6 +688,27 @@ function updateAttributeChoiceInputs() {
   $("#magickaIncreasesInput").attr("max",characterData.hmsIncreases[1] + freeChoices);
   $("#staminaIncreasesInput").attr("max",characterData.hmsIncreases[2] + freeChoices);
 }
+
+function updateDerivedAttributesInputs() {
+  let spentHealthChoices = characterData.derivedAttributesIncreases[0] + characterData.derivedAttributesIncreases[1] + characterData.derivedAttributesIncreases[2];
+  let spentMagickaChoices = characterData.derivedAttributesIncreases[3] + characterData.derivedAttributesIncreases[4] + characterData.derivedAttributesIncreases[5];
+  let spentStaminaChoices = characterData.derivedAttributesIncreases[6] + characterData.derivedAttributesIncreases[7] + characterData.derivedAttributesIncreases[8];
+ 
+  
+  $("#damageResistDerivedInput").attr("max",(characterData.hmsIncreases[0] - (characterData.derivedAttributesIncreases[1] + characterData.derivedAttributesIncreases[2])));
+  $("#meleeDamageDerivedInput").attr("max",(characterData.hmsIncreases[0] - (characterData.derivedAttributesIncreases[0] + characterData.derivedAttributesIncreases[2])));
+  $("#shoutCooldownDerivedInput").attr("max",(characterData.hmsIncreases[0] - (characterData.derivedAttributesIncreases[0] + characterData.derivedAttributesIncreases[1])));
+  
+  $("#magicResistDerivedInput").attr("max",(characterData.hmsIncreases[1] - (characterData.derivedAttributesIncreases[4]+characterData.derivedAttributesIncreases[5])));
+  $("#spellCostDerivedInput").attr("max",(characterData.hmsIncreases[1] - (characterData.derivedAttributesIncreases[3]+characterData.derivedAttributesIncreases[5])));
+  $("#spellPowerDerivedInput").attr("max",(characterData.hmsIncreases[1] - (characterData.derivedAttributesIncreases[3]+characterData.derivedAttributesIncreases[4])));
+  
+  $("#moveSpeedDerivedInput").attr("max",(characterData.hmsIncreases[2] - (characterData.derivedAttributesIncreases[7]+characterData.derivedAttributesIncreases[8])));
+  $("#marksmanDamageDerivedInput").attr("max",(characterData.hmsIncreases[2] - (characterData.derivedAttributesIncreases[6]+characterData.derivedAttributesIncreases[8])));
+  $("#attackSpeedDerivedInput").attr("max",(characterData.hmsIncreases[2] - (characterData.derivedAttributesIncreases[6]+characterData.derivedAttributesIncreases[7])));
+}
+
+
 
 function updateFreeAttributeChoicesDisplay(){
   let theDiv = $("#attributesToSpendDiv");

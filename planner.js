@@ -10,6 +10,7 @@ var copiedMessageTimeoutID = -1;
 var characterData = {
   race: 0, //This is an index into the race data array
   hmsIncreases: [],
+  derivedAttributesIncreases: [],
   skillLevels: [],
   perksTaken: [],
   oghmaChoice: 0, //0 for nothing, 1 for health, 2 for magicka, 3 for stam
@@ -40,6 +41,7 @@ function initCharacterData(){
   if(!gotFromURL){
     characterData.race = 0;
     characterData.hmsIncreases = [0,0,0];
+	characterData.derivedAttributesIncreases = [0,0,0,0,0,0,0,0,0];
     characterData.skillLevels = [];
     for(let i = 0; i < 18; i++){
       characterData.skillLevels.push(pRaceData.races[0].startingSkills[i]);
@@ -88,10 +90,61 @@ function updateDerivedAttributes(){
     
     $(`#derivedAttributeValue${i}`).html(bonus);
   }
-  
-  
-  
 }
+
+
+// Ftweaks 5.0 new Derived Attribute System
+function updateDerivedAttributesActive(){
+	let derAttrData = pGameMechanicsData.derivedAttributes;
+	
+	for(let i = 0; i <= characterData.derivedAttributesIncreases.length; i++){
+		
+		bonus = derAttrData.increase[i+5] * characterData.derivedAttributesIncreases[i];
+    
+		bonus = "+" + bonus;
+    
+		if(derAttrData.isPercent[i+5]){
+			bonus += "%";
+		}
+    
+		$(`#derivedAttributeValue${i+5}`).html(bonus);
+	}
+}
+
+function updateDerivedAttributesPassive(){
+	let derAttrData = pGameMechanicsData.derivedAttributes;
+	let bonus = 0;
+	
+	for(let i = 0; i < 5;i++){
+		if(i == 0 || i == 1){
+			bonus = derAttrData.increase[i] * characterData.hmsIncreases[0];
+		}
+		if(i == 3){
+			bonus = derAttrData.increase[i] * characterData.hmsIncreases[1];
+		}
+		if(i == 2 || i == 4){
+			bonus = derAttrData.increase[i] * characterData.hmsIncreases[2];
+		}
+		
+		bonus = "+" + bonus;
+		
+		if(derAttrData.isPercent[i]){
+			bonus += "%";
+		}
+		
+		$(`#derivedAttributeValue${i}`).html(bonus);
+	}
+}
+
+function checkDerivedSpent(){
+	let sum = 0;
+	for(let i = 0; i < characterData.derivedAttributesIncreases.length;i++){
+		sum = sum+characterData.derivedAttributesIncreases[i];
+	}
+	
+	return sum == (characterData.hmsIncreases[0] + characterData.hmsIncreases[1] + characterData.hmsIncreases[2]);
+}
+	
 
 //Determine the base attributes for the character: starting race value + any selected increases.
 function calcBaseAttributes(){
@@ -153,7 +206,7 @@ function changeRace(newRaceNum,respectOld = true){
   updateCharacterLevelAndResults();
   updateCircleAndLineColors();
   updateSkillLevelsDisplay();
-  updateDerivedAttributes();
+  updateDerivedAttributesPassive();
   $("#activeSkillLevelInput").val(characterData.skillLevels[activeSkill]);
   $("#activeSkillLevelInput").attr("min",newRace.startingSkills[activeSkill]); 
 }
@@ -472,6 +525,10 @@ function calcFreeAttributeChoices(){
     characterData.hmsIncreases[1] + characterData.hmsIncreases[2]);
 }
 
+function calcFreeDerivedChoices(attribute){
+	return characterData.hmsIncreases[attribute];
+}
+
 //Generate just the build code part of the build sharing URL,
 //i.e. b=?
 function generateBuildCode(){
@@ -481,6 +538,9 @@ function generateBuildCode(){
   code += String.fromCodePoint(characterData.hmsIncreases[0]);
   code += String.fromCodePoint(characterData.hmsIncreases[1]);
   code += String.fromCodePoint(characterData.hmsIncreases[2]);
+  for(let i = 0; i < 9; i++) {
+	  code += String.fromCodePoint(characterData.derivedAttributesIncreases[i]);
+  }
   for(let i = 0; i < 18; i++){
     code += String.fromCodePoint(characterData.skillLevels[i]);
   }
@@ -551,24 +611,30 @@ function buildCodeParserV1(buildCode){
   characterData.hmsIncreases[1] = buildCode.charCodeAt(3);
   characterData.hmsIncreases[2] = buildCode.charCodeAt(4);
   
+  characterData.derivedAttributesIncreases = [];
+  
+  for(let i = 0; i < 9; i++){
+    characterData.derivedAttributesIncreases.push(buildCode.charCodeAt(5+i));
+  }
+  
   characterData.skillLevels = [];
   
   for(let i = 0; i < 18; i++){
-    characterData.skillLevels.push(buildCode.charCodeAt(5+i));
+    characterData.skillLevels.push(buildCode.charCodeAt(14+i));
   }
   
-  characterData.oghmaChoice = buildCode.charCodeAt(23);
-  characterData.blackBookPerks = buildCode.charCodeAt(24);
-  characterData.extendedPathPerks = buildCode.charCodeAt(25);
+  characterData.oghmaChoice = buildCode.charCodeAt(32);
+  characterData.blackBookPerks = buildCode.charCodeAt(33);
+  characterData.extendedPathPerks = buildCode.charCodeAt(34);
   
-  characterData.race = buildCode.charCodeAt(26);
-  characterData.birthsign = buildCode.charCodeAt(27);
-  characterData.blessing = buildCode.charCodeAt(28);
+  characterData.race = buildCode.charCodeAt(35);
+  characterData.birthsign = buildCode.charCodeAt(36);
+  characterData.blessing = buildCode.charCodeAt(37);
   
   characterData.perksTaken = [];
   //this method will be kind of inefficient but EHHHHHHH
   for(let i = 0; i < pPerksData.perks.length; i++){
-    let index = 29 + Math.floor(i/8);
+    let index = 38 + Math.floor(i/8);
     let offset = 7 - (i % 8);
     let hasPerk = (buildCode.charCodeAt(index) & (1 << offset)) > 0;
     characterData.perksTaken.push(hasPerk);
@@ -608,8 +674,13 @@ function validateBuild(){
     answer.valid = false;
     answer.message = "You have a perk you don't have the pre-requisites for.";
   }
+  else if(!checkDerivedSpent()){
+	  answer.valid = false;
+	  answer.message = "You need to spent your Derived Attribute Points.";
+  }
   return answer;
 }
+
 
 
 
