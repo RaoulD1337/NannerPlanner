@@ -198,8 +198,11 @@ function updateAttributeText(){
 	bonusHms[i] = bonuses;
 	
   }
-	if(totalIncreases <= 20){
+	if(totalIncreases <= pGameMechanicsData.leveling.extraCapLevel){
 		baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*totalIncreases;
+	}
+	if(totalIncreases > pGameMechanicsData.leveling.extraCapLevel){
+		baseHms[0] += pGameMechanicsData.leveling.extraHms[0]*pGameMechanicsData.leveling.extraCapLevel;
 	}
   
   for(let i = 0; i < 3; i++){

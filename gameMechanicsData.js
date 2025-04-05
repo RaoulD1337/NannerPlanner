@@ -12,7 +12,8 @@ const gameMechanicsData = {
     mult : 25,
     hmsGiven : [5,7,6],
 	extraHms : [2,0,0],
-	extraMR : 0.33
+	extraMR : 0.3,
+	extraCapLevel : 20
   },
   
   supernatural: {

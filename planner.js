@@ -98,15 +98,19 @@ function updateDerivedAttributes(){
 function updateDerivedAttributesActive(){
 	let derAttrData = pGameMechanicsData.derivedAttributes;
 	let totalIncreases = characterData.hmsIncreases[0] + characterData.hmsIncreases[1] + characterData.hmsIncreases[2];
-	offset = 5;
+	let offset = 5;
 	
 	for(let i = 0; i <= characterData.derivedAttributesIncreases.length; i++){
 		
 		bonus = derAttrData.increase[i+offset] * characterData.derivedAttributesIncreases[i];
 		
-		if(i == 3 && totalIncreases <=20){
+		if(i == 3 && totalIncreases <= pGameMechanicsData.leveling.extraCapLevel){
 			bonus += (pGameMechanicsData.leveling.extraMR * totalIncreases);
 		}
+		if(i == 3 && totalIncreases > pGameMechanicsData.leveling.extraCapLevel){
+			bonus += (pGameMechanicsData.leveling.extraMR * pGameMechanicsData.leveling.extraCapLevel);
+		}
+		
     
 		bonus = Math.round(bonus * 100) / 100;
 	
