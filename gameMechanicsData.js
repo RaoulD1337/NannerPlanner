@@ -8,8 +8,8 @@ const gameMechanicsData = {
   },
   
   leveling: {
-    base : 75,
-    mult : 25,
+    base : 150,
+    mult : 23,
     hmsGiven : [5,7,6],
 	extraHms : [2,0,0],
 	extraMR : 0.3,
