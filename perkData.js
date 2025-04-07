@@ -631,7 +631,7 @@ const perkData = {
 	   description : "When fighting with one-handed weapons, you're able to attack even faster.<br>[+17.5% attack speed]"},
 	   //151
 	  {name : "Storm of Steel", skill : 11, skillReq : 75,
-	   xPos : 77, yPos : 30, preReqs : [149,150], nextPerk: -1,
+	   xPos : 77, yPos : 30, preReqs : [149], nextPerk: -1,
 	   description : "The fury of battle energizes your blows. Each strike you deal with one-handed weapons increases your damage for a short period of time."},
 	   //152
 	  {name : "Penetrating Strikes", skill : 11, skillReq : 15,
