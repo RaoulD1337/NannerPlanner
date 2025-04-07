@@ -623,7 +623,7 @@ const perkData = {
 	   description : "Your improved fighting techniques increase your damage dealt with one-handed weapons greatly.<br>[20% more damage]"},
 	   //149
 	  {name : "Flurry", skill : 11, skillReq : 25,
-	   xPos : 85, yPos : 78, preReqs : [148], nextPerk: 150,
+	   xPos : 85, yPos : 78, preReqs : [147], nextPerk: 150,
 	   description : "When fighting with one-handed weapons, you are able to attack faster than normal.<br>[+7.5% attack speed]"},
 	   //150
 	  {name : "Flurry", skill : 11, skillReq : 50,
