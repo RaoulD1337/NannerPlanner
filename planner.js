@@ -636,7 +636,7 @@ function buildCodeParserV1(buildCode){
   characterData.derivedAttributesIncreases = [];
   
   for(let i = 0; i < 9; i++){
-    characterData.derivedAttributesIncreases.push(buildCode.charCodeAt(6+i));
+    characterData.derivedAttributesIncreases.push(buildCode.charCodeAt(5+i));
   }
   
   characterData.skillLevels = [];
