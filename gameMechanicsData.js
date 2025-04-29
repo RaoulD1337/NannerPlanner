@@ -38,6 +38,7 @@ const gameMechanicsData = {
     attribute : ["Disease Resist",
                  "Poison Resist",
 				 "Carry Weight",
+				 "Cast Speed",
 //				 "Unarmed Damage",
 				 "Magicka Regeneration",
 				 "Stamina Regeneration",
@@ -53,6 +54,7 @@ const gameMechanicsData = {
     isPercent : [true,
                  true,
                  false,			 
+				 true,
 //                 false,						// Unarmed
                  true,
                  true,
@@ -68,6 +70,7 @@ const gameMechanicsData = {
     increase :  [1.0,
                  1.0,
                  2.5,
+				 1.0,
 //                 ,								// Unarmed
                  2.0,
                  2.5,

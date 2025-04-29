@@ -98,7 +98,7 @@ function updateDerivedAttributes(){
 function updateDerivedAttributesActive(){
 	let derAttrData = pGameMechanicsData.derivedAttributes;
 	let totalIncreases = characterData.hmsIncreases[0] + characterData.hmsIncreases[1] + characterData.hmsIncreases[2];
-	let offset = 5;
+	let offset = 6;
 	
 	for(let i = 0; i <= characterData.derivedAttributesIncreases.length; i++){
 		
@@ -131,14 +131,14 @@ function updateDerivedAttributesPassive(){
 	let derAttrData = pGameMechanicsData.derivedAttributes;
 	let bonus = 0;
 	
-	for(let i = 0; i < 5;i++){
+	for(let i = 0; i < 6;i++){
 		if(i == 0 || i == 1){
 			bonus = derAttrData.increase[i] * characterData.hmsIncreases[0];
 		}
-		if(i == 3){
+		if(i == 3 || i == 4){
 			bonus = derAttrData.increase[i] * characterData.hmsIncreases[1];
 		}
-		if(i == 2 || i == 4){
+		if(i == 2 || i == 5){
 			bonus = derAttrData.increase[i] * characterData.hmsIncreases[2];
 		}
 		
@@ -636,7 +636,7 @@ function buildCodeParserV1(buildCode){
   characterData.derivedAttributesIncreases = [];
   
   for(let i = 0; i < 9; i++){
-    characterData.derivedAttributesIncreases.push(buildCode.charCodeAt(5+i));
+    characterData.derivedAttributesIncreases.push(buildCode.charCodeAt(6+i));
   }
   
   characterData.skillLevels = [];
