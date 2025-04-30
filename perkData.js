@@ -951,7 +951,7 @@ const perkData = {
 	   description : "You've meditated thoroughly, and acquired vast insights into the Way of the Voice. <br> Thus, you can call upon the power of your Thu'um rapidly once each day."},
 	   //231
 	   {name : "Great Weapon Mastery", skill : 17, skillReq : 0,
-	   xPos : 50, yPos : 90, preReqs : [], nextPerk: 231,
+	   xPos : 50, yPos : 90, preReqs : [], nextPerk: 232,
 	   description : "Your improved fighting techniques increase your damage dealt with two-handed weapons.<br>[damage x 1.1]"},
 	   //232
 	   {name : "Great Weapon Mastery", skill : 17, skillReq : 35,
