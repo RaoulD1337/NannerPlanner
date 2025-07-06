@@ -51,7 +51,7 @@ const perkData = {
 	   description : "Skoom addiction is unlike any other disease. You're able to concoct a recipe that will make you whole again."},
 	  //6
 	  {name : "Regeneration", skill : 0, skillReq : 65,
-	   xPos : 50, yPos : 60, preReqs : [2], nextPerk: -1,
+	   xPos : 55, yPos : 62, preReqs : [2], nextPerk: -1,
 	   description : "Having altered your body with extracts from troll fat, slaughterfish eggs and spriggan sap, you're now able to regenerate your body, and do so even more rapidly when you are immersed in water."},
 	  //7
 	  {name : "Catalysis", skill : 0, skillReq : 50,
@@ -499,11 +499,11 @@ const perkData = {
 	   description : "You have studied the most common spell formulae that affect basic emotions like fear, calmness and courage. Thus, you can empower related spells and increase their overall effectiveness."},
 	   //118
 	  {name : "Acoustic<br>Manipulation", skill : 8, skillReq : 25,
-	   xPos : 30, yPos : 65, preReqs : [114], nextPerk: -1,
+	   xPos : 20, yPos : 65, preReqs : [114], nextPerk: -1,
 	   description : "After studying spells like Muffle, Arcane Resonance or Dampening Rune you are now familiar with manipulating sounds. <br> Thus, you can empower these spells and require less concentration to maintain them."},
 	   //119
 	  {name : "Visual<br>Manipulation", skill : 8, skillReq : 30,
-	   xPos : 37, yPos : 38, preReqs : [114], nextPerk: -1,
+	   xPos : 33, yPos : 40, preReqs : [114], nextPerk: -1,
 	   description : "You've experimented with spells like Dark Vision and Invisibility to manipulate your surroundings. After a lot of training<br>you can now empower such spells and concentrating on them requires less effort."},
 	   //120
 	  {name : "Otherwordly<br>Phantasms", skill : 8, skillReq : 45,
@@ -519,7 +519,7 @@ const perkData = {
 	   description : "Having studied spells like Phantasmal Pain and Waking Nightmare, you can now invoke terrible agony in your foes with ease. In addition, you also learned how to empower related spells."},
 	   //123
 	  {name : "Environmental<br>Manipulation", skill : 8, skillReq : 65,
-	   xPos : 25, yPos : 29, preReqs : [118,119], nextPerk: -1,
+	   xPos : 20, yPos : 29, preReqs : [118,119], nextPerk: -1,
 	   description : "After long training with spells like Vanish, Veil of Silence, and Invisibility and Muffling Spheres, you gained a deep insight<br>into the connections between light and sound. You can now empower these spells and maintain them with less effort."},
 	   //124
 	  {name : "Obliterate<br>the Mind", skill : 8, skillReq : 70,
@@ -539,7 +539,7 @@ const perkData = {
 	   description : "Having studied spells like Phantasmal Miasma, Fog of Shadows, and Mind Maelstrom, there is no thinking being that can escape your influence. These spells can now be empowered and sustained more easily."},
 	   //128
 	  {name : "Phantasmogoria", skill : 8, skillReq : 90,
-	   xPos : 35, yPos : 5, preReqs : [123,126], nextPerk: -1,
+	   xPos : 25, yPos : 5, preReqs : [123,126], nextPerk: -1,
 	   description : "You've mastered the most powerful forms of deceptive magic. Therefore, spells like Veil of Shadows<br>and Mistress of the Dark can now be empowered and cast with highly decreased effort."},
 	   //129
 	  {name : "Cheap Tricks", skill : 9, skillReq : 0,
@@ -843,14 +843,14 @@ const perkData = {
 	   description : "You've acquired the skill on how to craft even higher tier bolts, arrows, bombs, and master keys."},
 	   //204
 	  {name : "Legendary<br>Blacksmithing", skill : 14, skillReq : 100,
-	   xPos : 50, yPos : 30, preReqs : [203,206,208], nextPerk: -1,
+	   xPos : 50, yPos : 30, preReqs : [-203,-206,-208], nextPerk: -1,
 	   description : "You make steel sing songs on the anvil. Your hammer is no longer a mere tool, but a loom that weaves the fabric of myths.<br>You can improve weapons and armor of almost any kind, including the most ancient of artifacts. Maximizes Augmentation strength."},
 	   //205
 	  {name : "Armorsmith", skill : 14, skillReq : 35,
 	   xPos : 74, yPos : 55, preReqs : [201], nextPerk: -1,
 	   description : "You've studied handling armors and can craft, temper, and augment armors of more advanced materials. Increases overall armor Augmentation strength."},
 	   //206
-	  {name : "Armor Specialist", skill : 14, skillReq : 70,
+	  {name : "Armor<br>Specialist", skill : 14, skillReq : 70,
 	   xPos : 95, yPos : 40, preReqs : [205], nextPerk: -1,
 	   description : "You've become an expert of armors and can craft, temper, and augment armors of very complex materials. Maximizes overall armor Augmentation strength."},
 	   //207
@@ -858,7 +858,7 @@ const perkData = {
 	   xPos : 26, yPos : 55, preReqs : [201], nextPerk: -1,
 	   description : "You've studied handling weapons and can craft, temper, and augment weapons of more advanced materials, as well as assign them traits. Increases overall weapon Augmentation strength."},
 	   //208
-	  {name : "Weapon Specialist", skill : 14, skillReq : 80,
+	  {name : "Weapon<br>Specialist", skill : 14, skillReq : 80,
 	   xPos : 5, yPos : 40, preReqs : [207], nextPerk: -1,
 	   description : "You've become an expert of weapons and can craft, temper, and augment weapons of very complex materials, as well as assign them traits. Maximizes overall weapon Augmentation strength."},
 	   //209
@@ -879,11 +879,11 @@ const perkData = {
 	   description : "You've learned to exploit weaknesses in your foes' armor <br> when sneak attacking with daggers, bows or swords."},
 	   //213
 	  {name : "Anatomical Lore", skill : 15, skillReq : 50,
-	   xPos : 63, yPos : 50, preReqs : [212], nextPerk: -1,
+	   xPos : 63, yPos : 55, preReqs : [212], nextPerk: -1,
 	   description : "Newfound knowledge of humanoid anatomy allows you to slay almost any <br> human-like creature outright with sneak attacks."},
 	   //214
 	  {name : "Advanced<br>Anatomical Lore", skill : 15, skillReq : 75,
-	   xPos : 55, yPos : 40, preReqs : [213], nextPerk: -1,
+	   xPos : 52, yPos : 45, preReqs : [213], nextPerk: -1,
 	   description : "Your vast knowledge of anatomy allows you to perform devastating sneal attacks on almost any target."},
 	   //215
 	  {name : "Light<br>Steps", skill : 15, skillReq : 40,
@@ -899,55 +899,55 @@ const perkData = {
 	   description : "There's almost nothing you cannot evade.<br>You are even harder to detect, more silent and all falling damage is decreased. Grants the One with the Shadows Rank II ability."},
 	   //218
 	  {name : "Haggling", skill : 16, skillReq : 0,
-	   xPos : 25, yPos : 90, preReqs : [], nextPerk: 218,
+	   xPos : 35, yPos : 90, preReqs : [], nextPerk: 219,
 	   description : "You've learned how to deal with Skyrim's greedy merchants <br> and how to haggle for better prices."},
 	   //219
 	  {name : "Haggling", skill : 16, skillReq : 40,
-	   xPos : 25, yPos : 90, preReqs : [218], nextPerk: -1,
+	   xPos : 35, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've become an expert in dealing with Skyrim's greedy merchants <br> and how to demand more favorable prices. You've even able to convince merchants to use their reserve funds to pay for your goods."},
 	   //220
 	  {name : "Merchant", skill : 16, skillReq : 60,
-	   xPos : 22, yPos : 50, preReqs : [218], nextPerk: -1,
+	   xPos : 32, yPos : 50, preReqs : [218], nextPerk: -1,
 	   description : "Your trading skills are good enough to sell almost anything to any merchant willing to trade with you, <br> and you can invest some of your gold with a shopkeeper to increase his available gold permanently."},
 	   //221
 	  {name : "Silver Tongue", skill : 16, skillReq : 25,
-	   xPos : 8, yPos : 70, preReqs : [218], nextPerk: -1,
+	   xPos : 18, yPos : 70, preReqs : [218], nextPerk: -1,
 	   description : "You've spent quite some time improving your rhetorical skills and are now able to greatly influence<br>any conversation and to fascinate the opposite gender. You also get better offers at respective vendors."},
 	   //222
 	  {name : "Fencing", skill : 16, skillReq : 100,
-	   xPos : 33, yPos : 30, preReqs : [220], nextPerk: -1,
+	   xPos : 43, yPos : 30, preReqs : [220], nextPerk: -1,
 	   description : "You've become so persuasive that you could make almost anyone believe that <br> your goods are of a legal origin."},
 	   //223
 	  {name : "Leadership", skill : 16, skillReq : 75,
-	   xPos : 23, yPos : 28, preReqs : [221], nextPerk: -1,
+	   xPos : 33, yPos : 28, preReqs : [221], nextPerk: -1,
 	   description : "Your rhetorical skill makes you the perfect leader. By inspiring all those who fight by your side,<br>you encourage your followers to always push their abilities to their very limits."},
 	   //224
 	  {name : "Masquerade", skill : 16, skillReq : 50,
-	   xPos : 20, yPos : 20, preReqs : [221], nextPerk: 225,
+	   xPos : 30, yPos : 20, preReqs : [221], nextPerk: 225,
 	   description : "You've become proficient at acting, and with the right equipment you can now disguise yourself,<br>although sometimes people can still tell that you are not truly one of them."},
 	   //225
 	  {name : "Masquerade", skill : 16, skillReq : 100,
-	   xPos : 20, yPos : 20, preReqs : [221,224], nextPerk: -1,
+	   xPos : 30, yPos : 20, preReqs : [221,224], nextPerk: -1,
 	   description : "There is no role you cannot play, and your acting is so believable that there is almost no way <br> for others to see through your disguises."},
 	   //226
 	  {name : "Lore of the Thu'um", skill : 16, skillReq : 0,
-	   xPos : 75, yPos : 90, preReqs : [], nextPerk: -1,
+	   xPos : 85, yPos : 90, preReqs : [], nextPerk: -1,
 	   description : "You've been studying the lore and ancient script of dragons and the Thu'um.<br>Thus, you can shout more often."},
 	   //227
 	  {name : "Destructive Urge", skill : 16, skillReq : 0,
-	   xPos : 55, yPos : 80, preReqs : [226], nextPerk: -1,
+	   xPos : 65, yPos : 80, preReqs : [226], nextPerk: -1,
 	   description : "The horrors that the Thu'um can inflict are etched into your mind just as you have seen them etched into stone.<br>Your Thu'um will wreak even greater havoc among your unfortunate foes."},
 	   //228
 	  {name : "Indomitable Force", skill : 16, skillReq : 0,
-	   xPos : 53, yPos : 60, preReqs : [226], nextPerk: -1,
+	   xPos : 63, yPos : 60, preReqs : [226], nextPerk: -1,
 	   description : "You know what it means to be called Ysmir, Dragon of the North.<br> As you have withstood the test of Thu'um, so you will withstand the Thu'um of others."},
 	   //229
 	   {name : "Spiritual Equilibrium", skill : 16, skillReq : 0,
-	   xPos : 57, yPos : 35, preReqs : [226], nextPerk: -1,
+	   xPos : 67, yPos : 35, preReqs : [226], nextPerk: -1,
 	   description : "You have been guided in meditating on the Thu'um.<br>Now your shouts linger, lasting longer than they did before."},
 	   //230
 	   {name : "The Way of the Voice", skill : 16, skillReq : 0,
-	   xPos : 60, yPos : 25, preReqs : [226], nextPerk: -1,
+	   xPos : 70, yPos : 25, preReqs : [226], nextPerk: -1,
 	   description : "You've meditated thoroughly, and acquired vast insights into the Way of the Voice. <br> Thus, you can call upon the power of your Thu'um rapidly once each day."},
 	   //231
 	   {name : "Great Weapon Mastery", skill : 17, skillReq : 0,
@@ -987,7 +987,7 @@ const perkData = {
 	   description : "You've become a master of greatsword combat.<br>[+24% attack speed with greatswords, +21% armor penetration]"},
 	   //240
 	   {name : "Warhammer<br>Focus", skill : 17, skillReq : 25,
-	   xPos : 62, yPos : 75, preReqs : [233], nextPerk: 249,
+	   xPos : 62, yPos : 75, preReqs : [233], nextPerk: 241,
 	   description : "You've learned some techniques to crush armor with warhammers.<br>[5% more power attack damage, +15% armor penetration]"},
 	   //241
 	   {name : "Warhammer<br>Focus", skill : 17, skillReq : 50,
