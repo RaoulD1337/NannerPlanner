@@ -344,7 +344,7 @@ const perkData = {
 	   //79
 	  {name : "Enchanter's Insight", skill : 5, skillReq : 20,
 	   xPos : 50, yPos : 90, preReqs : [78], nextPerk: -1,
-	   description : "Your advanced knowledge of arcane energy allows you to improve all your enchantments even more."},
+	   description : "Your advanced knowledge of arcane energy allows you to improve all your enchantments even more, especially clothing."},
 	   //80
 	  {name : "Soul Gem<br>Mastery", skill : 5, skillReq : 25,
 	   xPos : 65, yPos : 70, preReqs : [78], nextPerk: -1,
@@ -452,19 +452,19 @@ const perkData = {
 	   //106
 	  {name : "Combat<br>Casting", skill : 7, skillReq : 15,
 	   xPos : 30, yPos : 68, preReqs : [101], nextPerk: -1,
-	   description : "You're able to keep concentrated enough in heavy armor to <br> cast Novice and Apprentice level spells without severe penalties."},
+	   description : "You're able to keep concentrated enough in heavy armor to <br> cast Novice and Apprentice level spells without severe penalties.<br>While wearing a full set of heavy armor, you lose less magicka from being hit."},
 	   //107
 	  {name : "Combat Trance", skill : 7, skillReq : 40,
 	   xPos : 20, yPos : 52, preReqs : [106], nextPerk: -1,
-	   description : "Your heavy armor distracts you even less, allowing you to cast Adept level spells <br> with almost no penalty."},
+	   description : "Your heavy armor distracts you even less, allowing you to cast Adept level spells <br> with almost no penalty. While wearing a full set of heavy armor,<br>you lose even less magicka from being hit."},
 	   //108
 	  {name : "Combat Meditation", skill : 7, skillReq : 65,
 	   xPos : 22, yPos : 20, preReqs : [107], nextPerk: -1,
-	   description : "You're accustomed to your heavy armor so much<br> that you can now cast even Expert level spells with relative ease."},
+	   description : "You're accustomed to your heavy armor so much<br> that you can now cast even Expert level spells with relative ease.<br>While wearing a full set of heavy armor, you lose nearly no magicka when hit, and you can concentrate and regen magicka quicker."},
 	   //109
 	  {name : "Battle Mage", skill : 7, skillReq : 95,
 	   xPos : 25, yPos : 5, preReqs : [108], nextPerk: -1,
-	   description : "You have mastered spellcasting while wearing heavy armor and now can even cast Master level spells with ease. <br> Bolstered by wearing your full heavy armor, you can concentrate even more and cast all spells easier."},
+	   description : "You have mastered spellcasting while wearing heavy armor and now can even cast Master level spells with ease. <br> Bolstered by wearing full heavy armor, you can concentrate even more and cast all spells easier, and lose no magicka from being hit."},
 	   //110
 	  {name : "Relentless<br>Onslaught", skill : 7, skillReq : 10,
 	   xPos : 50, yPos : 68, preReqs : [101], nextPerk: -1,
