@@ -50,8 +50,8 @@ const perkData = {
 	   xPos : 40, yPos : 75, preReqs : [4], nextPerk: -1,
 	   description : "Skoom addiction is unlike any other disease. You're able to concoct a recipe that will make you whole again."},
 	  //6
-	  {name : "Regeneration", skill : 0, skillReq : 65,
-	   xPos : 55, yPos : 62, preReqs : [2], nextPerk: -1,
+	  {name : "Regeneration", skill : 0, skillReq : 60,
+	   xPos : 58, yPos : 62, preReqs : [2], nextPerk: -1,
 	   description : "Having altered your body with extracts from troll fat, slaughterfish eggs and spriggan sap, you're now able to regenerate your body, and do so even more rapidly when you are immersed in water."},
 	  //7
 	  {name : "Catalysis", skill : 0, skillReq : 50,
@@ -66,9 +66,9 @@ const perkData = {
 	   xPos : 37, yPos : 35, preReqs : [4], nextPerk: -1,
 	   description : "By adding small amounts of truly horrifying ingredients, you are able to make your poisons more potent."},
 	  //10
-	  {name : "Immunization", skill : 0, skillReq : 75,
+	  {name : "Alchemical Fortification", skill : 0, skillReq : 75,
 	   xPos : 50, yPos : 25, preReqs : [-7,-9], nextPerk: -1,
-	   description : "You've discovered a way to make your body more resilient to all kinds of diseases and poisons."},
+	   description : "You've discovered a way to hone the potency of more specific alchemical effects,<br>allowing you to increase the strength of potions that fortify resistances and core attributes."},
 	  //11
 	  {name : "Fortified<br>Muscles", skill : 0, skillReq : 80,
 	   xPos : 42, yPos : 47, preReqs : [-10], nextPerk: -1,
@@ -192,11 +192,11 @@ const perkData = {
 	   //41
 	   {name : "Mystic<br>Maelstrom", skill : 3, skillReq : 30,
 	   xPos : 72, yPos : 70, preReqs : [36], nextPerk: -1,
-	   description : "The weapon-shaped Daedra you conjure now directly cut into their victims' souls, <br> thereby making targets vulnerable to soul gems and suffer irresistible damage. Bound items also last until sheathed or dispelled. "},
+	   description : "The weapon-shaped daedra you conjure now directly cut into their victims' souls, <br> thereby making targets vulnerable to soul gems and suffer irresistible damage. Bound items also last until sheathed or dispelled. Your bound armor and shields provide more protection and stronger enchantments."},
 	   //42
 	  {name : "Mystic<br>Binding", skill : 3, skillReq : 50,
 	   xPos : 75, yPos : 40, preReqs : [41], nextPerk: -1,
-	   description : "You've become very skilled in binding weapon-shaped daedra from Oblivion. <br> Thereby, bound weapons are stronger and have silver properties."},
+	   description : "You've become very skilled in binding weapon and armor shaped daedra from Oblivion. <br> Thereby, bound weapons are stronger and have silver properties. Your bound armor and shields provide more protection and stronger enchantments."},
 	   //43
 	  {name : "Mystic<br>Banishment", skill : 3, skillReq : 75,
 	   xPos : 73, yPos : 25, preReqs : [42], nextPerk: -1,
@@ -215,7 +215,7 @@ const perkData = {
 	   description : "Your knowledge of the realms of the dead surpasses that of many and decreases the effort needed to raise or summon the dead and ghosts from greater distances."},
 	   //47
 	  {name : "Dark<br>Infusion", skill : 3, skillReq : 90,
-	   xPos : 60, yPos : 15, preReqs : [46], nextPerk: -1,
+	   xPos : 65, yPos : 15, preReqs : [46], nextPerk: -1,
 	   description : "By infusing your undead creations with dark energies, you are able to make them stronger and more resilient. You can even prevent your creations from decaying to dust."},
 	   //48
 	  {name : "Summoner's<br>Insight", skill : 3, skillReq : 25,
@@ -412,7 +412,7 @@ const perkData = {
 	   //96
 	  {name : "Dexterity", skill : 6, skillReq : 50,
 	   xPos : 35, yPos : 40, preReqs : [95], nextPerk: -1,
-	   description : "You are able to balance your weapon and free hands better.<br> Thus, you can decrease the effort to execute power attacks and draw a bow when not wearing a heavy cuirass and can cast spells with greater speed when fully unburdened by armor."},
+	   description : "You are able to balance your weapon and free hands better.<br> Thus, you can decrease the effort to execute power attacks and draw a bow when not wearing a heavy cuirass, hit vital spots to an enemy in action with a crossbow, and can cast spells with greater speed when fully unburdened by armor."},
 	   //97
 	  {name : "Wind Walker", skill : 6, skillReq : 75,
 	   xPos : 38, yPos : 20, preReqs : [96], nextPerk: -1,
@@ -696,7 +696,7 @@ const perkData = {
 	   //167
 	  {name : "Battle Master", skill : 11, skillReq : 100,
 	   xPos : 50, yPos :10, preReqs : [165,166], nextPerk: -1,
-	   description : "You've gained a mastery over special weapon techniques that allow you to knock down and disarm enemies.<br>[Forward power attacks can knock down, sideways power attacks disarm enemies who are attacking you]"},
+	   description : "You've gained a mastery over special weapon techniques that allow you to knock down and disarm enemies.<br>[Forward power attacks can knock down, sideways power attacks disarm enemies who are attacking you, one-handed stance attacks are 25% stronger]"},
 	   //168
 	  {name : "Nimble Fingers", skill : 12, skillReq : 0,
 	   xPos : 30, yPos : 90, preReqs : [], nextPerk: 169,
@@ -744,39 +744,39 @@ const perkData = {
 	   //179
 	  {name : "Brawling", skill : 12, skillReq : 15,
 	   xPos : 50, yPos : 69, preReqs : [168], nextPerk: -1,
-	   description : "You're a passionate fist fighter, and train regularly to toughen your muscles to their very limits.<br>Your punches now deliver 30 more damage points and cost half as much stamina."},
+	   description : "You're a passionate fist fighter, and train regularly to toughen your muscles to their very limits.<br>Your punches deal 20 more damage and cost 25% less stamina."},
 	   //180
 	  {name : "Boxing<br>Focus", skill : 12, skillReq : 25,
-	   xPos : 52, yPos : 50, preReqs : [179], nextPerk: 181,
+	   xPos : 52, yPos : 43, preReqs : [179], nextPerk: 181,
 	   description : "You've learned the basics of combat boxing, allowing you to increase your attack rate and movement speed while using fist weapons slightly."},
 	   //181
 	  {name : "Boxing<br>Focus", skill : 12, skillReq : 50,
-	   xPos : 52, yPos : 50, preReqs : [179,180], nextPerk: 182,
-	   description : "You've acquired the advanced techniques of combat boxing, further increasing your attack rate  and movement speed while using fist weapons. This path you choose locks you out of other focuses."},
+	   xPos : 52, yPos : 43, preReqs : [179,180], nextPerk: 182,
+	   description : "You've acquired the advanced techniques of combat boxing, further increasing your attack rate  and movement speed while using fist weapons. This path you choose locks you out of other focuses. You can now use the Pressure Points unarmed stance."},
 	   //182
 	  {name : "Boxing<br>Focus", skill : 12, skillReq : 75,
-	   xPos : 52, yPos : 50, preReqs : [179,180,181], nextPerk: -1,
+	   xPos : 52, yPos : 43, preReqs : [179,180,181], nextPerk: -1,
 	   description : "You've become a master of combat boxing, allowing you to swing your fists and move so while using fist weapons fast that it's almost undetectable to the mortal eye. You're able to do a sprinting unarmed attack. This path you choose locks you out of other focuses."},	
 	   //183
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 25,
-	   xPos : 60, yPos : 43, preReqs : [179], nextPerk: 184,
+	   xPos : 70, yPos : 50, preReqs : [179], nextPerk: 184,
 	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
 	   //184
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 50,
-	   xPos : 60, yPos : 43, preReqs : [179,183], nextPerk: 185,
-	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
+	   xPos : 70, yPos : 50, preReqs : [179,183], nextPerk: 185,
+	   description : "You've acquired the advanced techniques of grappling, further increasing your chance of disarming and knockdown. Prevents perking into Boxing Focus. You can now use the Leeching Palm unarmed stance."},
 	   //185
 	  {name : "Grappling<br>Focus", skill : 12, skillReq : 75,
-	   xPos : 60, yPos : 43, preReqs : [179,183,184], nextPerk: -1,
+	   xPos : 70, yPos : 50, preReqs : [179,183,184], nextPerk: -1,
 	   description : "You've learned the basics of grappling, allowing you to disarm your opponents and make them trip and fall. Prevents perking into Boxing Focus."},
 	   //186
 	  {name : "Fast Hands", skill : 12, skillReq : 40,
 	   xPos : 75, yPos : 70, preReqs : [168], nextPerk: 187,
-	   description : "You're able to attack more quickly with light weapons like daggers and bows."},
+	   description : "You're able to attack more quickly with light weapons like daggers, bows and crossbows."},
 	   //187
 	  {name : "Fast Hands", skill : 12, skillReq : 80,
 	   xPos : 75, yPos : 70, preReqs : [168,186], nextPerk: -1,
-	   description : "You're able to attack even more quickly with light weapons like daggers and bows. In addition, you're able to deflect incoming projectiles from ranged weapons, significantly reducing their damage, if you have enough distance and are not attacking,"},
+	   description : "You're able to attack even quicker with light weapons like daggers, bows and crossbows. In addition, you're able to deflect incoming projectiles from ranged weapons, significantly reducing their damage, if you have enough distance and are not attacking."},
 	   //188
 	  {name : "Novice Restoration", skill : 13, skillReq : 0,
 	   xPos : 35, yPos : 90, preReqs : [], nextPerk: -1,
@@ -1029,7 +1029,22 @@ const perkData = {
 	   {name : "Mighty Strike", skill : 17, skillReq : 100,
 	   xPos : 50, yPos : 5, preReqs : [249], nextPerk: -1,
 	   description : "You can kill almost any foe with a single strike of your two-hander, as your blows even fell giants with ease.<br>[25% more damage against enemies with full health.]"},
-
+	   //251
+	   {name : "Grave<br>Summoning", skill : 3, skillReq : 70,
+	   xPos : 57, yPos : 20, preReqs : [46], nextPerk: -1,
+	   description : "You have learned how to better commune with your summoned undead, allowing you to increase their potency.<br>All undead summons last longer in this realm, and have greater strength, spell power, speed, and durability."},
+	   //252
+	   {name : "Channeled<br>Technique", skill : 12, skillReq : 80,
+	   xPos : 67, yPos : 30, preReqs : [-180, -183], nextPerk: -1,
+	   description : "Your mastery of unarmed combat has allowed you to unlock more advanced techniques.<br>You can now imbue your unarmed attacks with various elements using the Elemental Fist lesser power."},
+	   //253
+	   {name : "Master<br>Pugilism", skill : 12, skillReq : 95,
+	   xPos : 70, yPos : 15, preReqs : [252], nextPerk: -1,
+	   description : "Your mastery of the martial arts allows you to hit even harder and better protect yourself while unarmed.<br>You deal 20 more damage with your unarmed attacks, and you take 33% reduced incoming physical and magic damage while actively attacking unarmed."},
+	   //254
+	   {name : "Constitution", skill : 0, skillReq : 60,
+	   xPos : 42, yPos : 62, preReqs : [4], nextPerk: -1,
+	   description : "Having altered your body with extracts from a thistle branch, beehive husk, and charred skeever hide, you can attack with greater ease and are more resistant to poison and disease. "},
 	]
 };
 

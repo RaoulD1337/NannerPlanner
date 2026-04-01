@@ -26,6 +26,7 @@ const blessingData = {
     {name: "Peryite", hms: [0,0,0]},
     {name: "Sanguine", hms: [0,0,0]},
     {name: "Sheogorath", hms: [0,0,0]},
+    {name: "Sithis", hms: [0,0,25]},
     {name: "Stendarr", hms: [0,0,0]},
 	{name: "Syrabane", hms: [0,25,0]},
     {name: "Talos", hms: [0,0,0]},
