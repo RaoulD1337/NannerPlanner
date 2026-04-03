@@ -347,3 +347,60 @@ svg > text, .unselectable {
   margin-bottom:5px;
   display:block;
 }
+
+#buildCodeSectionDiv {
+    padding-bottom: 10px;
+	border-bottom: 2px solid black;
+}
+
+#discordSectionDiv {
+	padding-bottom: 10px;
+}
+
+#discordSectionDiv .discord-section-title {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+	margin-top:10px;
+    margin-left:auto;
+	margin-right:auto;
+	margin-bottom:10px;
+	display:block;
+}
+
+#discordSectionDiv .discord-servers-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: nowrap;
+}
+
+#discordSectionDiv .discord-server {
+    text-align: center;
+}
+
+#discordSectionDiv .discord-server-label {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #bbb;
+}
+
+#discordSectionDiv .discord-icon-link {
+    display: inline-block;
+    padding: 6px;
+    border-radius: 10px;
+    transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+#discordSectionDiv .discord-icon-link:hover {
+    transform: scale(1.15);
+    background-color: rgba(114, 137, 218, 0.15); 
+}
+
+#discordSectionDiv .discord-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}

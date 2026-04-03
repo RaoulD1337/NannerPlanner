@@ -52,6 +52,7 @@ function updateStuffFromCharacterCode(){
   $("#marksmanDamageDerivedInput").val(characterData.derivedAttributesIncreases[7]);
   $("#attackSpeedDerivedInput").val(characterData.derivedAttributesIncreases[8]);
   updateCharacterLevelAndResults();
+  updateBuildCodeDisplay();
 }
 
 function createDerivedAttributesTable() {
