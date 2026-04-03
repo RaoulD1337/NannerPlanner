@@ -1,20 +1,20 @@
 const birthsignData = {
   
 	birthsigns : [
-		{name: "None", hms: [0,0,0]},
-		{name: "Apprentice", hms: [0,0,0]},
-		{name: "Atronach", hms: [0,600,0]},
-		{name: "Lady", hms: [30,0,30]},
-		{name: "Lover", hms: [25,25,25]},
-		{name: "Lord", hms: [0,0,0]},
-		{name: "Mage", hms: [0,75,0]},
-		{name: "Ritual", hms: [0,0,0]},
-		{name: "Serpent", hms: [0,0,0]},
-		{name: "Shadow", hms: [0,0,0]},
-		{name: "Steed", hms: [0,0,50]},
-		{name: "Thief", hms: [0,0,20]},
-		{name: "Tower", hms: [0,0,0]},
-		{name: "Warrior", hms: [30,0,0]},
+		{name: "None", hms: [0,0,0], description: ""},
+		{name: "Apprentice", hms: [0,0,0], description: "The Apprentice grants a very fast regeneration of Magicka and cheaper spellcasting, but weakens all cast spells and infusions."},
+		{name: "Atronach", hms: [0,600,0], description: "The Sign of the Atronach grants additional Magicka and a 25% chance to outright absorb magical attacks, but those born under the Atronach have an extraordinarily difficult time recovering magicka, whether naturally or through other means. Only a long rest in a safe place will work."},
+		{name: "Lady", hms: [30,0,30], description: "Those born under the Lady have additional endurance and resilience, can catch their breath a bit faster, and can run or swim without penalty."},
+		{name: "Lord", hms: [0,0,0], description: "The Stone of the Lord grants those who possess its blessing natural regeneration and weakened hostile spells, but also afflicts them with the Trollkin curse, granting a weakness to fire. Worn armor also contributes 33% less penalty for wearing armor to all stamina and spell costs, movement speed and noise."},
+		{name: "Lover", hms: [25,25,25], description: "The Lover grants those born under it 25 points each of health, magicka, and stamina, while also increasing speechcraft by 20 points. Beneficial potion effects last 25% longer. Students of the Thu'um born under the Lover will also find the Dragon Language easier to master, gaining 20% shorter periods of rest between Shouts."},
+		{name: "Mage", hms: [0,75,0], description: "Those under the Sign of the Mage are granted additional Magicka and can more easily resist absorbing spells. Staves and scrolls are 20% stronger, enchantments cost 20% less charges, and spells cast 20% faster."},
+		{name: "Ritual", hms: [0,0,0], description: "Those born under the Ritual boast a supernatural ability to prepare for combat, regenerating magicka much more quickly while outside of battle. Their spells are naturally more potent but also more expensive, and they can summon one additional creature."},
+		{name: "Serpent", hms: [0,0,0], description: "Those born under the Serpent have an affinity for poison, gaining total immunity to all poisons and a natural affinity for alchemical poisons and poison magic. Serpents can choose to shed their skin and remove poison resistance for extra poison damage through alchemy or magic, and remove the ability to spit poisons for the ability to coat their weapons with poison at will. Serpents can also drink an additional potion before suffering the effects of toxicity, and gain the ability to spit increasingly powerful poisons as they grow in strength."},
+		{name: "Shadow", hms: [0,0,0], description: "Those born under the Sign of the Shadow are naturally stealthy, able to move silently and without notice, may temporarily blind others by looking at them using magicka, and may even become invisible, though the process is exhausting. Those under the Sign of the Shadow are also granted supernatural luck, having a 10%% chance to avoid taking any damage from physical attacks."},
+		{name: "Steed", hms: [0,0,50], description: "The Steed grants those who bear its blessing increased Stamina and swifter movement."},
+		{name: "Thief", hms: [0,0,20], description: "The Sign of the Thief grants wide-spread abilities to those who bear her blessing. It improves lockpicking and dexterity skills by 20 points, grants 5% attack speed and 20 stamina, and reduces the stamina cost of all attacks by 20%. Lastly, it increases lockpicking expertise by 2 points and allows effortless locks to be picked in plain sight with nobody noticing, creating a wax-molded copy of the key, if one exists."},
+		{name: "Tower", hms: [0,0,0], description: "The Tower grants those under its sign 50 extra carry weight and the ability to unlock most locks at will. The ability to open locks comes intrinsically to those under this sign, and becomes more pronounced as the user grows in strength. The Tower additionally increases mass by 1, equivalent to armor weighing 100 units. Lastly, the Tower provides 150 points of protection from physical damage, reduces incoming physical damage by 25% when standing still or walking, and reduces fall damage by 50%."},
+		{name: "Warrior", hms: [30,0,0], description: "The Warrior strengthens those who bear his blessing. Damage with one-handed, two-handed and marksman weapons is increased by 10% and armor penetration by 5%. Health increased by 30 points. In addition, unarmed damage is increased by 10, and stamina loss on hit is reduced by 50%."},
 	]
 };
 

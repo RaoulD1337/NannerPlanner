@@ -669,7 +669,10 @@ function updateRaceSelect(){
   let raceSel = $("#raceSelect");
   raceSel.empty();
   for(let i = 0; i < pRaceData.races.length; i++){
-    raceSel.append(`<option value="${i}">${pRaceData.races[i].name}</option>`);
+	  let race = pRaceData.races[i];
+	  let opt = new Option(race.name, i);
+	  opt.title = race.description || "";
+	  raceSel.append(opt);
   }
 }
 
@@ -677,7 +680,10 @@ function updateBlessingSelect(){
   let blessSel = $("#blessingSelect");
   blessSel.empty();
   for(let i = 0; i < pBlessingData.blessings.length; i++){
-    blessSel.append(`<option value="${i}">${pBlessingData.blessings[i].name}</option>`);
+	  let blessing = pBlessingData.blessings[i];
+	  let opt = new Option(blessing.name, i);
+	  opt.title = blessing.description;
+	  blessSel.append(opt);
   }
 }
 
@@ -685,7 +691,10 @@ function updateBirthsignSelect(){
   let bsSelect = $("#birthsignSelect");
   bsSelect.empty();
   for(let i = 0; i < pBirthsignData.birthsigns.length; i++){
-    bsSelect.append(`<option value="${i}">${pBirthsignData.birthsigns[i].name}</option>`);
+	  let bs = pBirthsignData.birthsigns[i];
+	  let opt = new Option(bs.name, i);
+	  opt.title = bs.description;
+	  bsSelect.append(opt);
   }
 }
 
